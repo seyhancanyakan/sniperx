@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head><title>SniperX Test</title></head>
+<body style="background:#111;color:#eee;font-family:monospace;padding:20px">
+<h1>SniperX Test Page</h1>
+<div id="out">Loading...</div>
+<script>
+// Auto-detect base path
+const base = location.pathname.substring(0, location.pathname.lastIndexOf('/static/'));
+fetch(base+'/api/data').then(r=>r.json()).then(d=>{
+  let h='<h2>API OK</h2>';
+  h+='<p>Balance: $'+d.account.balance+'</p>';
+  h+='<p>Equity: $'+d.account.equity+'</p>';
+  h+='<p>PnL: $'+d.account.pnl+'</p>';
+  h+='<p>Zones: '+d.zones.length+'</p>';
+  h+='<p>Positions: '+d.positions.length+'</p>';
+  d.positions.forEach(p=>{
+    h+='<p style="color:'+(p.r_result>0?'lime':'red')+'">'+p.symbol+' '+p.direction+' R:'+p.r_result+'</p>';
+  });
+  h+='<p>Symbols: '+d.symbols.join(', ')+'</p>';
+  h+='<hr><h3>Chart lib test:</h3>';
+
+  // Test chart library
+  const s=document.createElement('script');
+  s.src='/media/lightweight-charts.js';
+  s.onload=()=>{document.getElementById('charttest').textContent='Chart library OK: '+typeof LightweightCharts};
+  s.onerror=(e)=>{document.getElementById('charttest').textContent='Chart library FAILED: '+e};
+  document.head.appendChild(s);
+  h+='<div id="charttest">Loading chart lib...</div>';
+
+  document.getElementById('out').innerHTML=h;
+}).catch(e=>{
+  document.getElementById('out').innerHTML='<h2 style="color:red">API ERROR: '+e+'</h2>';
+});
+</script>
+</body>
+</html>

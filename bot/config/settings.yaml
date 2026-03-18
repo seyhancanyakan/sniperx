@@ -1,0 +1,170 @@
+broker:
+  provider: "mt5_bridge"
+  mt5_login: 0
+  mt5_password: ""
+  mt5_server: "HFMarkets-Demo"
+  mt5_path: ""
+  bridge_url: ""  # Set your MT5 bridge URL
+  bridge_api_key: ""
+
+# ─── ZONE DETECTION ───
+zone_detection:
+  spike_atr_mult: 1.8            # Slightly more sensitive impulse detection
+  base_min_candles: 2
+  base_max_candles: 20
+  base_max_range_mult: 1.2       # Tighter base range
+  left_side_max_swings: 5        # Cleaner left side required
+  lookback: 400
+  min_displacement: 1.8          # Allow more zones (was 2.0)
+  atr_period: 14
+  use_trend_filter: true          # Demand at dips, supply at peaks
+
+# ─── QUALITY FILTERS ───
+filters:
+  enabled: true
+  min_confidence: 60
+  min_triangular_score: 55
+  min_white_space_score: 50
+  max_return_bars: 50
+  max_zone_height_atr: 1.5
+  max_risk_atr: 1.8
+  min_breakout_body_ratio: 0.6
+
+# ─── EXECUTION MODEL ───
+execution:
+  model: "hybrid_adaptive"
+  entry_placement: "penetration"  # Better R:R than mid entry
+  stop_model: "core"
+  stop_buffer_atr: 0.15          # Small ATR buffer on stop
+  tp_ratio: 2.5                  # Fixed TP ratio (R:R) when no partial TP
+  use_partial_tp: true            # Enable partial TP
+  tp1_rr: 1.5                    # TP1 at 1.5R — take half
+  tp2_rr: 3.0                    # TP2 at 3.0R — trailing the rest
+  use_breakeven: true             # Move SL to BE after TP1
+  breakeven_after_tp1: true
+  trailing_enabled: true          # Trail after TP1
+  trailing_activation_rr: 2.0
+  trailing_distance_mult: 0.8
+  time_stop_bars:
+    M5: 24
+    M15: 20
+    M30: 16
+    H1: 12
+    H4: 8
+  min_confidence: 55              # Minimum zone confidence to trade
+  risk_percent: 2.0               # Conservative risk
+  max_positions: 5                # More slots for more symbols
+  sl_buffer_pips: 3
+  max_spread_pips: 3.0            # Spread guard
+  enable_cluster_risk: true       # Cluster risk limit
+  cluster_max_risk_percent: 2.0   # Max risk per cluster
+
+symbols:
+  # Majör pariler
+  - "EURUSD"
+  - "GBPUSD"
+  - "USDJPY"
+  - "USDCHF"
+  - "AUDUSD"
+  - "NZDUSD"
+  - "USDCAD"
+  # Cross pariler
+  - "EURGBP"
+  - "EURJPY"
+  - "GBPJPY"
+  - "AUDJPY"
+  - "NZDJPY"
+  - "CADJPY"
+  - "CHFJPY"
+  - "EURCAD"
+  - "EURAUD"
+  - "GBPAUD"
+  - "GBPCAD"
+  - "AUDCAD"
+  - "AUDNZD"
+  - "AUDCHF"
+  # Metaller
+  - "XAUUSD"
+  - "XAGUSD"
+  # Endeksler
+  - "US100"
+  - "US30"
+  - "US500"
+  - "DE40"
+
+scan_timeframes:
+  - "M5"
+  - "M15"
+  - "M30"
+  - "H1"
+  - "H4"
+
+scan_interval: 15
+
+web:
+  host: "0.0.0.0"
+  port: 8080
+
+# ─── REGIME FILTER ───
+regime:
+  enabled: true
+  ema_fast: 20
+  ema_slow: 50
+  slope_lookback: 10
+  atr_expansion_mult: 1.2
+  efficiency_threshold: 0.35
+  allow_countertrend_first_touch: false
+  prefer_flips_in_strong_breaks: true
+
+# ─── MULTI-TIMEFRAME BIAS ───
+multi_timeframe:
+  enabled: true
+  bias_map:
+    M5: M30
+    M15: H1
+    M30: H4
+    H1: H4
+  require_alignment_for_base_zones: true
+  require_alignment_for_flips: false
+
+# ─── AI META-FILTER ───
+ai:
+  enabled: false
+  provider: "zai"
+  model: "zai/glm-5"
+  role: "meta_filter"
+  min_confidence: 65
+  only_borderline: true
+  borderline_min_confidence: 55
+  borderline_max_confidence: 75
+  fail_open: true
+  timeout_sec: 12
+
+telegram:
+  enabled: true
+  bot_token: ""  # Set via TELEGRAM_BOT_TOKEN env var
+  chat_id: ""    # Set via TELEGRAM_CHAT_ID env var
+
+state_management:
+  save_zone_on_fill_only: true
+  burn_on_deep_touch: true
+  shallow_touch_penetration_pct: 0.15
+  deep_touch_penetration_pct: 0.45
+  pending_order_expiry_bars:
+    M5: 6
+    M15: 5
+    M30: 4
+    H1: 3
+    H4: 2
+  traded_zone_ttl_days:
+    M5: 2
+    M15: 4
+    M30: 7
+    H1: 21
+    H4: 45
+
+notifications:
+  signal_alert: true
+  tp_hit_alert: true
+  sl_hit_alert: true
+  zone_detected_alert: false

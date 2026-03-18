@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+node_modules/
+*.log
+backtest-results/
+bot/config/traded_zones.json
