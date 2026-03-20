@@ -4,29 +4,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SniperX Multi</title>
-<script>
-// Load lightweight-charts: try local first, fallback to CDN
-(function(){
-  var base=location.pathname.indexOf('/sniperx/')>=0?'/sniperx':'';
-  var s=document.createElement('script');
-  s.src=base+'/static/lightweight-charts.js';
-  s.onerror=function(){
-    var s2=document.createElement('script');
-    s2.src='https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js';
-    document.head.appendChild(s2);
-  };
-  document.head.appendChild(s);
-})();
-</script>
+<script src="https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#0a0a0f;color:#e4e4f0;font-family:monospace;overflow:hidden;height:100vh}
-.top{display:flex;align-items:center;justify-content:space-between;padding:0 10px;height:36px;background:#101018;border-bottom:1px solid #1e1e3a}
-.logo{font-size:14px;font-weight:900;color:#f59e0b}
+.top{display:flex;align-items:center;justify-content:space-between;padding:0 10px;height:36px;background:#101018;border-bottom:1px solid #1e1e3a;flex-shrink:0}
+.logo{font-size:14px;font-weight:900;color:#f59e0b;cursor:pointer}
 .btns{display:flex;gap:4px}
 .btn{padding:4px 10px;font-size:11px;font-weight:800;cursor:pointer;border-radius:4px;border:1px solid #a855f7;color:#a855f7;background:none;font-family:monospace}
 .btn.active{background:#a855f7;color:#fff}
-.wrap{display:flex;flex-wrap:wrap;height:calc(100vh - 36px)}
+.btn-g{border-color:#22c55e;color:#22c55e}.btn-g.active{background:#22c55e;color:#fff}
+.btn-b{border-color:#3b82f6;color:#3b82f6}.btn-b.active{background:#3b82f6;color:#fff}
+.btn-a{border-color:#f59e0b;color:#f59e0b}.btn-a.active{background:#f59e0b;color:#000}
+.main{display:flex;height:calc(100vh - 36px)}
+.sidebar{width:0;overflow:hidden;transition:width 0.2s;background:#101018;border-right:1px solid #1e1e3a;flex-shrink:0}
+.sidebar.open{width:280px;overflow-y:auto}
+.sidebar h3{font-size:11px;font-weight:800;color:#a855f7;padding:8px 10px 4px;text-transform:uppercase;letter-spacing:1px}
+.sidebar .card{margin:4px 8px;padding:8px;background:#16162a;border:1px solid #1e1e3a;border-radius:6px;font-size:10px}
+.sidebar .card-t{font-size:10px;font-weight:800;color:#8888aa;margin-bottom:4px}
+.sidebar .row{display:flex;justify-content:space-between;padding:2px 0;color:#e4e4f0}
+.sidebar .row .v{font-weight:700}
+.sidebar .grn{color:#22c55e}.sidebar .red{color:#ef4444}.sidebar .dim{color:#555570}
+.zi{padding:6px 8px;margin:3px 8px;background:#16162a;border:1px solid #1e1e3a;border-radius:6px;cursor:pointer;font-size:10px;border-left:3px solid #22c55e}
+.zi.sell{border-left-color:#ef4444}
+.zi:hover{background:#1e1e38}
+.zi .zh{display:flex;justify-content:space-between;font-weight:700}
+.zi .zd{color:#8888aa;font-size:9px;margin-top:2px}
+.trade-item{padding:4px 8px;margin:2px 8px;background:#16162a;border:1px solid #1e1e3a;border-radius:4px;font-size:9px}
+.charts{flex:1;display:flex;flex-wrap:wrap;overflow:hidden;height:100%}
 .cell{position:relative;border:1px solid #1e1e3a;box-sizing:border-box;overflow:hidden}
 .cell .lbl{position:absolute;top:4px;left:6px;z-index:5;font-size:12px;font-weight:900;color:#f59e0b;text-shadow:0 1px 4px #000}
 .cell .prc{position:absolute;top:20px;left:6px;z-index:5;font-size:18px;font-weight:900;text-shadow:0 1px 4px #000}
@@ -35,18 +40,20 @@ body{background:#0a0a0f;color:#e4e4f0;font-family:monospace;overflow:hidden;heig
 .cell .ctrls span:hover{color:#fff;background:rgba(255,255,255,0.15)}
 .full .cell{display:none}
 .full .cell.active{display:block;width:100%!important;height:100%!important}
+.empty{color:#555570;font-size:10px;padding:8px}
 </style>
 </head>
 <body>
 <div class="top">
-  <span class="logo">SNIPERX MULTI</span>
+  <span class="logo" onclick="toggleSidebar()">SNIPERX</span>
   <div class="btns">
+    <button class="btn btn-b" onclick="toggleSidebar()" id="btnPanel" title="Panel">&#9776;</button>
     <button class="btn" onclick="setCount(2)">2X</button>
     <button class="btn" onclick="setCount(3)">3X</button>
     <button class="btn" onclick="setCount(4)">4X</button>
     <button class="btn" onclick="setCount(5)">5X</button>
     <button class="btn active" onclick="setCount(6)">6X</button>
-    <button class="btn" onclick="location.href='/sniperx/'">1X</button>
+    <button class="btn" onclick="location.href=BASE+'/'">1X</button>
   </div>
   <div class="btns" id="tfBtns">
     <button class="btn tf-btn" onclick="setTF('M1')">1m</button>
@@ -58,7 +65,45 @@ body{background:#0a0a0f;color:#e4e4f0;font-family:monospace;overflow:hidden;heig
     <button class="btn tf-btn" onclick="setTF('D1')">1D</button>
   </div>
 </div>
-<div class="wrap" id="wrap"></div>
+<div class="main">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <!-- Account -->
+    <h3>Account</h3>
+    <div class="card">
+      <div class="row"><span>Balance</span><span class="v" id="sBalance">-</span></div>
+      <div class="row"><span>Equity</span><span class="v" id="sEquity">-</span></div>
+      <div class="row"><span>PnL</span><span class="v" id="sPnl">-</span></div>
+    </div>
+
+    <!-- Performance -->
+    <h3>Performance</h3>
+    <div class="card">
+      <div class="row"><span>Total R</span><span class="v" id="sTotalR">0</span></div>
+      <div class="row"><span>Win Rate</span><span class="v" id="sWinRate">0%</span></div>
+      <div class="row"><span>Trades</span><span class="v" id="sTrades">0</span></div>
+      <div class="row"><span>PF</span><span class="v" id="sPF">0</span></div>
+    </div>
+
+    <!-- Active Zones -->
+    <h3>Active Zones <span id="sZoneCount" style="color:#555"></span></h3>
+    <div id="sZones"><div class="empty">Scanning...</div></div>
+
+    <!-- Trade History -->
+    <h3>Trade History</h3>
+    <div id="sHistory"><div class="empty">No trades yet</div></div>
+
+    <!-- AI Learning -->
+    <h3>AI Learning</h3>
+    <div class="card">
+      <div class="row"><span>Patterns</span><span class="v" id="sPatterns">0</span></div>
+      <div class="row"><span>Annotations</span><span class="v" id="sAnnotations">0</span></div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts" id="wrap"></div>
+</div>
 
 <script>
 // Auto-detect base path
@@ -67,6 +112,93 @@ var BASE='';
 if(path.indexOf('/sniperx/')>=0) BASE='/sniperx';
 var API=BASE+'/api';
 var count=3;
+var sidebarOpen=localStorage.getItem('multiSidebar')==='1';
+
+function toggleSidebar(){
+  sidebarOpen=!sidebarOpen;
+  document.getElementById('sidebar').classList.toggle('open',sidebarOpen);
+  document.getElementById('btnPanel').classList.toggle('active',sidebarOpen);
+  localStorage.setItem('multiSidebar',sidebarOpen?'1':'0');
+  setTimeout(function(){window.dispatchEvent(new Event('resize'))},250);
+}
+
+function updateSidebar(d){
+  if(!d) return;
+  // Account
+  var a=d.account||{};
+  var el;
+  el=document.getElementById('sBalance'); if(el) el.textContent=(a.balance||0).toFixed(2)+' '+(a.currency||'');
+  el=document.getElementById('sEquity'); if(el) el.textContent=(a.equity||0).toFixed(2);
+  var pnl=((a.equity||0)-(a.balance||0));
+  el=document.getElementById('sPnl'); if(el){el.textContent=pnl.toFixed(2);el.className='v '+(pnl>=0?'grn':'red');}
+
+  // Stats
+  var s=d.stats||{};
+  el=document.getElementById('sTotalR'); if(el){el.textContent=(s.total_r||0)+'R';el.className='v '+((s.total_r||0)>=0?'grn':'red');}
+  el=document.getElementById('sWinRate'); if(el) el.textContent=(s.win_rate||0)+'%';
+  el=document.getElementById('sTrades'); if(el) el.textContent=(s.trades||0)+' (W:'+(s.wins||0)+' L:'+(s.losses||0)+')';
+  el=document.getElementById('sPF'); if(el) el.textContent=(s.profit_factor||0);
+
+  // Zones
+  var zl=d.zones||[];
+  var activeZ=zl.filter(function(z){return z.status==='active'||z.status==='departed'||z.status==='watching';});
+  el=document.getElementById('sZoneCount'); if(el) el.textContent='('+activeZ.length+')';
+  var ze=document.getElementById('sZones');
+  if(ze){
+    if(!activeZ.length){ze.innerHTML='<div class="empty">No active zones</div>';}
+    else{
+      ze.innerHTML=activeZ.slice(0,15).map(function(z){
+        var dir=z.zone_type==='demand'?'buy':'sell';
+        var cls=dir==='sell'?'sell':'';
+        return '<div class="zi '+cls+'" onclick="goZoneMulti(\''+z.symbol+'\',\''+z.timeframe+'\')">'+
+          '<div class="zh"><span>'+(dir==='buy'?'D':'S')+' '+z.symbol+'</span><span>'+z.timeframe+' '+(z.confidence||0).toFixed(0)+'%</span></div>'+
+          '<div class="zd">'+z.high.toFixed(5)+' — '+z.low.toFixed(5)+' P:'+z.pin_count+'</div></div>';
+      }).join('');
+    }
+  }
+
+  // Positions as trade history
+  var pos=d.positions||[];
+  var he=document.getElementById('sHistory');
+  if(he){
+    var closed=pos.filter(function(p){return p.status==='closed';});
+    var open=pos.filter(function(p){return p.status==='open'||p.status==='partial';});
+    var html='';
+    if(open.length){
+      html+='<div style="padding:2px 8px;font-size:9px;color:#f59e0b;font-weight:700">OPEN ('+open.length+')</div>';
+      open.forEach(function(p){
+        var clr=p.r_result>=0?'#22c55e':'#ef4444';
+        html+='<div class="trade-item"><span style="color:'+clr+'">'+p.direction.toUpperCase()+' '+p.symbol+' '+(p.r_result||0)+'R</span></div>';
+      });
+    }
+    if(closed.length){
+      html+='<div style="padding:2px 8px;font-size:9px;color:#555;font-weight:700;margin-top:4px">CLOSED ('+closed.slice(-10).length+')</div>';
+      closed.slice(-10).reverse().forEach(function(p){
+        var clr=p.r_result>=0?'#22c55e':'#ef4444';
+        html+='<div class="trade-item"><span style="color:'+clr+'">'+p.direction.toUpperCase()+' '+p.symbol+' '+(p.r_result||0)+'R</span></div>';
+      });
+    }
+    if(!html) html='<div class="empty">No trades yet</div>';
+    he.innerHTML=html;
+  }
+}
+
+function goZoneMulti(sym,tfName){
+  syms[0]=sym;
+  // Switch TF first (this triggers full rebuild)
+  if(tfName!==tf){
+    tf=tfName;
+    localStorage.setItem('multiTf',tfName);
+    document.querySelectorAll('.tf-btn').forEach(function(b){b.classList.remove('active');});
+    var active=document.querySelector('.tf-btn[onclick="setTF(\''+tfName+'\')"]');
+    if(active) active.classList.add('active');
+  }
+  // Rebuild all charts (ensures first chart has the right symbol)
+  loaded=[];
+  zoneLayers=[];
+  build();
+  localStorage.setItem('multiSyms',JSON.stringify(syms));
+}
 var charts=[];
 var series=[];
 var zoneLayers=[];  // per-chart zone series for cleanup
@@ -78,6 +210,9 @@ var tf=localStorage.getItem('multiTf')||'M15';
 var fullIdx=-1;
 
 // Init
+if(sidebarOpen) document.getElementById('sidebar').classList.add('open');
+if(sidebarOpen) document.getElementById('btnPanel').classList.add('active');
+
 fetch(API+'/data').then(function(r){return r.json()}).then(function(d){
   allSyms=d.symbols||[];
   zones=d.zones||[];
@@ -91,6 +226,12 @@ fetch(API+'/data').then(function(r){return r.json()}).then(function(d){
   document.querySelectorAll('.tf-btn').forEach(function(b){
     b.classList.toggle('active',b.textContent.trim()==={'M1':'1m','M5':'5m','M15':'15m','M30':'30m','H1':'1H','H4':'4H','D1':'1D'}[tf]);
   });
+  updateSidebar(d);
+  // AI learning stats
+  fetch(API+'/learning/stats').then(function(r){return r.json()}).then(function(ls){
+    var el=document.getElementById('sPatterns'); if(el) el.textContent=ls.total_patterns||0;
+    el=document.getElementById('sAnnotations'); if(el) el.textContent=ls.total_annotations||0;
+  }).catch(function(){});
 });
 
 function setTF(newTF){
@@ -147,7 +288,7 @@ function build(){
   charts=[];series=[];
 
   var wrap=document.getElementById('wrap');
-  wrap.className='wrap';
+  wrap.className='charts';
   var html='';
 
   for(var i=0;i<count;i++){
@@ -177,10 +318,6 @@ function build(){
 }
 
 function createChart(idx){
-  if(typeof LightweightCharts==='undefined'){
-    setTimeout(function(){createChart(idx)},500);
-    return;
-  }
   var el=document.getElementById('ch'+idx);
   if(!el) return;
   var r=el.getBoundingClientRect();
@@ -359,6 +496,8 @@ function connectWS(){
     try{
       var d=JSON.parse(e.data);
       if(d.type==='update'){
+        // Update sidebar
+        if(sidebarOpen) updateSidebar(d);
         // Update zones
         if(d.zones){
           var oldHash=JSON.stringify(zones.map(function(z){return (z.start_time||0)+'_'+z.high}));

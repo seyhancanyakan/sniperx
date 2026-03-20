@@ -51,6 +51,15 @@ class PinShotBot:
         self._traded_zones_file = str(Path(__file__).parent / "config" / "traded_zones.json")
         self._traded_zones = self._load_traded_zones()
 
+        # AI Learning Layer
+        try:
+            from .ai.challenger import ChallengerEngine
+            self.challenger = ChallengerEngine(mode="shadow")
+            self._ai_enabled = True
+        except Exception:
+            self.challenger = None
+            self._ai_enabled = False
+
     def _load_traded_zones(self) -> dict:
         """Load traded zones with timestamps. Format: {zone_key: timestamp}"""
         try:
@@ -371,6 +380,24 @@ class PinShotBot:
                             f"[{nz.status}] H:{nz.high:.5f} L:{nz.low:.5f} pins={nz.pin_count} "
                             f"disp={nz.displacement}x conf={nz.confidence:.0f} "
                             f"touch={nz.touch_count}")
+
+                # AI: Log zone features + challenger scoring
+                if self._ai_enabled:
+                    try:
+                        from .ai import log_zone, rule_based_score, detect_regime
+                        regime = detect_regime(candles) if candles else None
+                        zf = log_zone(nz, symbol, timeframe, atr,
+                                      regime=regime.label if regime else "",
+                                      bias="")
+                        ch_score = rule_based_score(vars(zf) if hasattr(zf, '__dict__') else {})
+                        if self.challenger:
+                            self.challenger.evaluate_zone(
+                                vars(zf) if hasattr(zf, '__dict__') else {},
+                                champion_score=nz.confidence,
+                                champion_would_trade=nz.confidence >= 50
+                            )
+                    except Exception as e:
+                        logger.debug(f"AI feature log error: {e}")
 
         # Step 3: Incremental update for existing zones — only NEW closed candles
         for z in existing:

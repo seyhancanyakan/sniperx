@@ -758,6 +758,19 @@ async def get_learning_stats():
     overall_wr = round(total_wins / total_trades * 100, 1) if total_trades > 0 else 0
     avg_r = round(sum(p.get("avg_r", 0) for p in with_outcomes) / len(with_outcomes), 2) if with_outcomes else 0
     total_bonus_active = sum(p.get("confidence_bonus", 0) for p in patterns if p.get("status") in ("approved", "approved_live", "active"))
+    # AI Champion-Challenger stats
+    ai_stats = {}
+    try:
+        from ..ai import get_feature_stats, get_scoring_stats
+        ai_stats = {
+            "features": get_feature_stats(),
+            "scorer": get_scoring_stats(),
+        }
+        if bot_engine and hasattr(bot_engine, 'challenger') and bot_engine.challenger:
+            ai_stats["challenger"] = bot_engine.challenger.get_comparison()
+    except Exception:
+        pass
+
     return JSONResponse({
         "total_patterns": total,
         "approved": approved,
@@ -770,6 +783,7 @@ async def get_learning_stats():
         "overall_win_rate": overall_wr,
         "avg_r": avg_r,
         "total_active_bonus": total_bonus_active,
+        "ai_learning": ai_stats,
     })
 
 

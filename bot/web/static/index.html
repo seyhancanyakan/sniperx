@@ -463,11 +463,12 @@ async function goZoneDirect(sym,tf,t1,t2,zHigh,zLow){
   await getCandles(sym,tf,true);
   if(!chart) return;
 
-  // Time zoom: zone - 20 bars to zone + 40 bars
-  const padLeft=barSec*20;
-  const padRight=barSec*40;
-  const from=t1?t1-padLeft:0;
-  const to=t2?(t2+padRight):(t1?t1+padRight:0);
+  // Time zoom: ~100 bars visible, zone on left side
+  const totalBars=250;
+  const zoneBars=Math.max(1,Math.round((t2-t1)/barSec));
+  const barsBeforeZone=10;
+  const from=t1?t1-barSec*barsBeforeZone:0;
+  const to=from+barSec*totalBars;
   if(from&&to){
     chart.timeScale().setVisibleRange({from:from,to:to});
   }
@@ -1513,13 +1514,31 @@ function renderLearning(){
   document.getElementById('lWR').textContent=(s.overall_win_rate||0)+'%';
   document.getElementById('lBonus').textContent=(s.total_active_bonus||0)>0?'+'+s.total_active_bonus:s.total_active_bonus||0;
 
-  // Pattern list
+  // Pattern list — new/proposed on top, approved in archive below
   const pl=document.getElementById('patternList');
   const pats=learningData.patterns;
   if(!pats.length){pl.innerHTML='<div class="empty">No patterns yet. Draw zones or add annotations to teach the AI.</div>';}
   else{
+    // Sort: proposed first, then by learned_at desc
+    const statusOrder={'proposed':0,'active':1,'approved':2,'approved_live':2,'disabled':3,'rejected':4};
+    pats.sort((a,b)=>{
+      const sa=statusOrder[a.status]||5, sb=statusOrder[b.status]||5;
+      if(sa!==sb) return sa-sb;
+      return (b.learned_at||0)-(a.learned_at||0);
+    });
+
+    // Group headers
+    let lastGroup='';
     pl.innerHTML=pats.map(p=>{
       const st=p.status||'proposed';
+      const groupLabels={'proposed':'YENI - ONAY BEKLIYOR','active':'AKTIF','approved':'ARSIV - ONAYLANMIS','approved_live':'ARSIV - ONAYLANMIS','disabled':'DURDURULMUS','rejected':'REDDEDILMIS'};
+      const group=groupLabels[st]||st.toUpperCase();
+      let header='';
+      if(group!==lastGroup){
+        lastGroup=group;
+        header='<div style="font-size:10px;font-weight:800;color:var(--a);padding:8px 0 2px;border-top:1px solid var(--brd);margin-top:6px">'+group+'</div>';
+      }
+
       const samples=p.sample_count||p.occurrence_count||1;
       const wins=p.win_count||0;
       const losses=p.loss_count||0;
@@ -1532,10 +1551,10 @@ function renderLearning(){
       const riskNote=_patternRiskNote(p);
       const age=_timeAgo(p.learned_at);
 
-      return `<div class="pat-item ${st}">
+      return header+`<div class="pat-item ${st}">
         <div class="pat-head">
           <span class="pat-name">${_esc(p.pattern||'Unknown')}</span>
-          <span class="pat-status ${st}">${st}</span>
+          <span class="pat-status ${st}">${st.toUpperCase()}</span>
         </div>
         <div class="pat-desc">${_esc(p.description_tr||p.description||p.outcome_lesson||'')}</div>
         <div class="pat-meta">
