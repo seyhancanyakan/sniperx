@@ -10,12 +10,18 @@ from .trade_manager import Signal, _get_pip, _pip_value_per_lot
 logger = logging.getLogger("pinshot.reverse")
 
 
-def validate_reverse_breakout(zone: Zone, candles: list, atr: float) -> bool:
-    """Validate that the zone break is strong enough for a reverse trade."""
+def validate_reverse_breakout(zone: Zone, candles: list, atr: float,
+                              min_body_atr: float = 1.5,
+                              min_volume_ratio: float = 1.5) -> bool:
+    """Validate that the zone break is strong enough for a reverse trade.
+
+    Deterministic thresholds from PinShot config:
+    - hard_break_body_min_atr: 1.5 (body >= 1.5x ATR)
+    - hard_break_volume_ratio: 1.5 (volume >= 1.5x avg)
+    """
     if atr <= 0:
         return False
 
-    # Must have at least 2 strong candles breaking through
     search_start = zone.end_idx + 3
     strong_break_candles = 0
     total_break_move = 0.0
@@ -24,10 +30,10 @@ def validate_reverse_breakout(zone: Zone, candles: list, atr: float) -> bool:
         c = candles[i]
         body = abs(c.close - c.open)
 
-        if zone.zone_type == "demand" and c.close < zone.low and body > atr:
+        if zone.zone_type == "demand" and c.close < zone.low and body > min_body_atr * atr:
             strong_break_candles += 1
             total_break_move += body
-        elif zone.zone_type == "supply" and c.close > zone.high and body > atr:
+        elif zone.zone_type == "supply" and c.close > zone.high and body > min_body_atr * atr:
             strong_break_candles += 1
             total_break_move += body
 

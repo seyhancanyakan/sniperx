@@ -25,7 +25,7 @@ from bot.core.detector import (
 # ─── CONFIG ───
 
 INITIAL_CAPITAL = 200.0
-RISK_PER_TRADE = 0.03  # 3%
+RISK_PER_TRADE = 0.05  # 5%
 TP_RATIO = 2.5  # Fixed TP at 2.5R
 
 SYMBOLS = [

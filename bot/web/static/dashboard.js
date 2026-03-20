@@ -322,7 +322,7 @@ function updateSignalLog() {
 
 function updateChartOverlays() {
     if (!state.chartReady) return;
-    const symZones = state.zones.filter(z => z.symbol === state.activeSymbol);
+    const symZones = state.zones.filter(z => z.symbol === state.activeSymbol && z.timeframe === state.activeTimeframe);
     drawZones(symZones);
 
     const symPos = state.positions.filter(p =>

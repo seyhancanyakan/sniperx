@@ -126,3 +126,8 @@ class MT5BridgeClient(BaseBroker):
     async def get_pending_orders(self) -> list:
         data = await self._request("GET", "/orders")
         return data.get("orders", [])
+
+    async def get_history(self, days: int = 30) -> list:
+        """Get closed trade history from MT5."""
+        data = await self._request("GET", f"/history?days={days}")
+        return data.get("deals", [])

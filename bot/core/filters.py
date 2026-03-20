@@ -16,10 +16,13 @@ class FilterResult:
 
 
 def triangular_filter(zone: Zone, candles: list, current_bar: int,
-                      max_return_bars: int = 50) -> float:
+                      max_return_bars: int = 12,
+                      max_alternating: int = 3,
+                      max_swing_flips: int = 2) -> float:
     """Score the triangular return pattern (0-100).
 
-    Ideal: clean V-shape return with max 2 swings, fast return.
+    Ideal: clean V-shape return with max 2 swing flips, fast return.
+    Deterministic thresholds from PinShot config.
     """
     # Spike index = breakout point (new backward detection)
     breakout_end = getattr(zone, 'spike_idx', zone.end_idx + 5)
@@ -71,7 +74,7 @@ def triangular_filter(zone: Zone, candles: list, current_bar: int,
 
 
 def white_space_filter(zone: Zone, candles: list, current_bar: int,
-                       max_return_bars: int = 50) -> float:
+                       max_return_bars: int = 12) -> float:
     """Score zone freshness/white space (0-100).
 
     Fresh: quick clean return. Stale: too many bars, too much chaos.
@@ -121,8 +124,11 @@ def white_space_filter(zone: Zone, candles: list, current_bar: int,
     return max(0.0, min(100.0, score))
 
 
-def left_side_filter(candles: list, zone_start: int, lookback: int = 15) -> float:
-    """Score left side cleanliness (0-100)."""
+def left_side_filter(candles: list, zone_start: int, lookback: int = 10,
+                     max_zigzag: int = 3) -> float:
+    """Score left side cleanliness (0-100).
+    Deterministic: max 3 zigzags (direction changes) allowed.
+    """
     atr = calculate_atr(candles, 14)
     threshold = atr * 0.5 if atr > 0 else 0.001
 
@@ -131,22 +137,25 @@ def left_side_filter(candles: list, zone_start: int, lookback: int = 15) -> floa
 
     if swings <= 2:
         return 100.0  # Very clean
-    elif swings == 3:
+    elif swings <= max_zigzag:
         return 70.0   # Acceptable
     else:
         return 0.0    # M/W pattern, invalid
 
 
-def near_miss_filter(zone: Zone, candles: list, lookback: int = 10) -> bool:
+def near_miss_filter(zone: Zone, candles: list, lookback: int = 10,
+                     threshold_atr_mult: float = 0.2) -> bool:
     """Check if price approached zone but bounced away without touching.
 
     Returns True if near-miss detected (bad signal).
+    Threshold: 0.2x ATR (deterministic from PinShot config).
     """
+    atr = calculate_atr(candles, 14)
     zone_range = zone.high - zone.low
     if zone_range <= 0:
         return False
 
-    threshold = zone_range * 0.2  # Within 20% of zone boundary
+    threshold = atr * threshold_atr_mult if atr > 0 else zone_range * 0.2
 
     end_check = min(len(candles), zone.end_idx + lookback + 5)
     for i in range(zone.end_idx + 3, end_check):
@@ -182,11 +191,14 @@ def combined_filter(zone: Zone, candles: list, current_bar: int,
 
     min_tri = settings.get("min_triangular_score", 60)
     min_ws = settings.get("min_white_space_score", 50)
-    max_return = settings.get("max_return_bars", 50)
+    max_return = settings.get("max_return_bars", 12)
+    max_alt = settings.get("v_return_max_alternating", 3)
+    max_sf = settings.get("v_return_max_swing_flips", 2)
 
-    tri_score = triangular_filter(zone, candles, current_bar, max_return)
+    tri_score = triangular_filter(zone, candles, current_bar, max_return,
+                                  max_alt, max_sf)
     ws_score = white_space_filter(zone, candles, current_bar, max_return)
-    ls_score = left_side_filter(candles, zone.start_idx)
+    ls_score = left_side_filter(candles, zone.start_idx, lookback=10, max_zigzag=3)
 
     scores = {
         "triangular": round(tri_score, 1),
@@ -199,6 +211,8 @@ def combined_filter(zone: Zone, candles: list, current_bar: int,
         reasons.append(f"Triangular score {tri_score:.0f} < {min_tri}")
     if ws_score < min_ws:
         reasons.append(f"White space score {ws_score:.0f} < {min_ws}")
+    # Left side: iğnelerin SOLU temiz olmalı (zig-zak olmamalı)
+    # Ama iğnelerin kendisi zone kalitesini artırır (detector'da kontrol edilir)
     if ls_score <= 0:
         reasons.append("Left side not clean (M/W pattern)")
 

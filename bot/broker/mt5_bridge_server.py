@@ -142,9 +142,13 @@ async def get_positions(_=Depends(check_auth)):
             continue
         result.append({
             "ticket": str(p.ticket), "symbol": p.symbol,
+            "type": p.type,
             "direction": "buy" if p.type == 0 else "sell",
-            "open_price": p.price_open, "lot": p.volume,
+            "open_price": p.price_open, "price_current": p.price_current,
+            "lot": p.volume,
             "sl": p.sl, "tp": p.tp, "pnl": p.profit,
+            "swap": p.swap, "commission": getattr(p, 'commission', 0),
+            "time": int(p.time),
         })
     return {"positions": result}
 
@@ -299,6 +303,68 @@ async def close_position(body: dict, _=Depends(check_auth)):
     if result and result.retcode == mt5.TRADE_RETCODE_DONE:
         return {"success": True}
     return {"success": False, "message": str(result)}
+
+
+@app.get("/history")
+async def get_history(days: int = 30, _=Depends(check_auth)):
+    """Get closed deal history for the last N days."""
+    from datetime import datetime, timedelta
+    date_from = datetime.now() - timedelta(days=days)
+    date_to = datetime.now() + timedelta(days=1)
+
+    deals = mt5.history_deals_get(date_from, date_to)
+    if not deals:
+        return {"deals": [], "debug": "no deals from MT5"}
+
+    # Group deals by position_id to reconstruct trades
+    entries = {}  # position_id -> entry deal
+    exits = {}    # position_id -> exit deal
+
+    for d in deals:
+        if d.magic != MAGIC:
+            continue
+        pid = str(d.position_id)
+        deal_data = {
+            "ticket": str(d.ticket),
+            "direction": "buy" if d.type == 0 else "sell",
+            "price": d.price,
+            "volume": d.volume,
+            "profit": d.profit,
+            "swap": d.swap,
+            "commission": getattr(d, 'commission', 0),
+            "time": int(d.time),
+            "symbol": d.symbol,
+        }
+        if d.entry == 0:  # DEAL_ENTRY_IN
+            entries[pid] = deal_data
+        elif d.entry == 1:  # DEAL_ENTRY_OUT
+            exits[pid] = deal_data
+
+    # Build trade summaries from matched entry+exit pairs
+    result = []
+    for pid, entry in entries.items():
+        ext = exits.get(pid)
+        total_profit = entry["profit"] + (ext["profit"] if ext else 0)
+        total_swap = entry["swap"] + (ext["swap"] if ext else 0)
+        total_comm = entry["commission"] + (ext["commission"] if ext else 0)
+        result.append({
+            "position_id": pid,
+            "symbol": entry["symbol"],
+            "direction": entry["direction"],
+            "entry_price": entry["price"],
+            "exit_price": ext["price"] if ext else 0,
+            "volume": entry["volume"],
+            "profit": round(total_profit, 2),
+            "swap": round(total_swap, 2),
+            "commission": round(total_comm, 2),
+            "net_profit": round(total_profit + total_swap + total_comm, 2),
+            "open_time": entry["time"],
+            "close_time": ext["time"] if ext else 0,
+            "is_closed": ext is not None,
+        })
+
+    result.sort(key=lambda x: x.get("close_time", 0), reverse=True)
+    return {"deals": result, "total_raw_deals": len(deals)}
 
 
 @app.delete("/order/{ticket}")

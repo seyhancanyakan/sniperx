@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head><title>Chart Test</title></head>
+<body style="background:#000;color:#fff;margin:0">
+<div id="log" style="padding:10px;font-family:monospace;font-size:12px"></div>
+<div id="chart" style="width:100%;height:400px"></div>
+<script>
+function log(msg){document.getElementById('log').innerHTML+=msg+'<br>';}
+log('1. Page loaded');
+
+var base=location.pathname.indexOf('/sniperx/')>=0?'/sniperx':'';
+log('2. Base path: "'+base+'"');
+
+var script=document.createElement('script');
+script.src=base+'/static/lightweight-charts.js';
+script.onload=function(){
+  log('3. Chart library loaded OK');
+
+  fetch(base+'/api/candles/EURUSD?timeframe=M15&count=50')
+  .then(function(r){log('4. API status: '+r.status);return r.json()})
+  .then(function(d){
+    log('5. Candles received: '+d.candles.length);
+
+    var chart=LightweightCharts.createChart(document.getElementById('chart'),{
+      width:800,height:400,
+      layout:{background:{type:'solid',color:'#111'}},
+    });
+    var series=chart.addCandlestickSeries();
+    series.setData(d.candles);
+    chart.timeScale().fitContent();
+    log('6. Chart drawn OK!');
+  })
+  .catch(function(e){log('ERROR fetch: '+e)});
+};
+script.onerror=function(){
+  log('3. LOCAL FAILED, trying CDN...');
+  var s2=document.createElement('script');
+  s2.src='https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js';
+  s2.onload=function(){log('3b. CDN loaded OK');};
+  s2.onerror=function(){log('3b. CDN ALSO FAILED');};
+  document.head.appendChild(s2);
+};
+document.head.appendChild(script);
+</script>
+</body>
+</html>

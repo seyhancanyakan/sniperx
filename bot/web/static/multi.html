@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SniperX Multi</title>
+<script>
+// Load lightweight-charts: try local first, fallback to CDN
+(function(){
+  var base=location.pathname.indexOf('/sniperx/')>=0?'/sniperx':'';
+  var s=document.createElement('script');
+  s.src=base+'/static/lightweight-charts.js';
+  s.onerror=function(){
+    var s2=document.createElement('script');
+    s2.src='https://unpkg.com/lightweight-charts@4.1.0/dist/lightweight-charts.standalone.production.js';
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s);
+})();
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0f;color:#e4e4f0;font-family:monospace;overflow:hidden;height:100vh}
+.top{display:flex;align-items:center;justify-content:space-between;padding:0 10px;height:36px;background:#101018;border-bottom:1px solid #1e1e3a}
+.logo{font-size:14px;font-weight:900;color:#f59e0b}
+.btns{display:flex;gap:4px}
+.btn{padding:4px 10px;font-size:11px;font-weight:800;cursor:pointer;border-radius:4px;border:1px solid #a855f7;color:#a855f7;background:none;font-family:monospace}
+.btn.active{background:#a855f7;color:#fff}
+.wrap{display:flex;flex-wrap:wrap;height:calc(100vh - 36px)}
+.cell{position:relative;border:1px solid #1e1e3a;box-sizing:border-box;overflow:hidden}
+.cell .lbl{position:absolute;top:4px;left:6px;z-index:5;font-size:12px;font-weight:900;color:#f59e0b;text-shadow:0 1px 4px #000}
+.cell .prc{position:absolute;top:20px;left:6px;z-index:5;font-size:18px;font-weight:900;text-shadow:0 1px 4px #000}
+.cell .ctrls{position:absolute;top:4px;right:6px;z-index:5;display:flex;gap:4px}
+.cell .ctrls span{cursor:pointer;color:#888;font-size:14px;padding:2px 4px;background:rgba(255,255,255,0.05);border-radius:3px}
+.cell .ctrls span:hover{color:#fff;background:rgba(255,255,255,0.15)}
+.full .cell{display:none}
+.full .cell.active{display:block;width:100%!important;height:100%!important}
+</style>
+</head>
+<body>
+<div class="top">
+  <span class="logo">SNIPERX MULTI</span>
+  <div class="btns">
+    <button class="btn" onclick="setCount(2)">2X</button>
+    <button class="btn" onclick="setCount(3)">3X</button>
+    <button class="btn" onclick="setCount(4)">4X</button>
+    <button class="btn" onclick="setCount(5)">5X</button>
+    <button class="btn active" onclick="setCount(6)">6X</button>
+    <button class="btn" onclick="location.href='/sniperx/'">1X</button>
+  </div>
+  <div class="btns" id="tfBtns">
+    <button class="btn tf-btn" onclick="setTF('M1')">1m</button>
+    <button class="btn tf-btn" onclick="setTF('M5')">5m</button>
+    <button class="btn tf-btn" onclick="setTF('M15')">15m</button>
+    <button class="btn tf-btn" onclick="setTF('M30')">30m</button>
+    <button class="btn tf-btn" onclick="setTF('H1')">1H</button>
+    <button class="btn tf-btn" onclick="setTF('H4')">4H</button>
+    <button class="btn tf-btn" onclick="setTF('D1')">1D</button>
+  </div>
+</div>
+<div class="wrap" id="wrap"></div>
+
+<script>
+// Auto-detect base path
+var path=location.pathname;
+var BASE='';
+if(path.indexOf('/sniperx/')>=0) BASE='/sniperx';
+var API=BASE+'/api';
+var count=3;
+var charts=[];
+var series=[];
+var zoneLayers=[];  // per-chart zone series for cleanup
+var loaded=[];      // track if chart has initial data
+var syms=[];
+var allSyms=[];
+var zones=[];
+var tf=localStorage.getItem('multiTf')||'M15';
+var fullIdx=-1;
+
+// Init
+fetch(API+'/data').then(function(r){return r.json()}).then(function(d){
+  allSyms=d.symbols||[];
+  zones=d.zones||[];
+  var zc={};
+  zones.forEach(function(z){zc[z.symbol]=(zc[z.symbol]||0)+1;});
+  var sorted=Object.keys(zc).sort(function(a,b){return zc[b]-zc[a];});
+  var rest=allSyms.filter(function(s){return sorted.indexOf(s)<0;});
+  allSyms=sorted.concat(rest);
+  var saved=parseInt(localStorage.getItem('multiCount'))||6;
+  setCount(saved);
+  document.querySelectorAll('.tf-btn').forEach(function(b){
+    b.classList.toggle('active',b.textContent.trim()==={'M1':'1m','M5':'5m','M15':'15m','M30':'30m','H1':'1H','H4':'4H','D1':'1D'}[tf]);
+  });
+});
+
+function setTF(newTF){
+  tf=newTF;
+  localStorage.setItem('multiTf',newTF);
+  document.querySelectorAll('.tf-btn').forEach(function(b){b.classList.remove('active');});
+  var active=document.querySelector('.tf-btn[onclick="setTF(\''+newTF+'\')"]');
+  if(active) active.classList.add('active');
+  // TF degisti — tum chart'lari bastan yukle
+  loaded=[];
+  for(var i=0;i<count;i++) loadData(i);
+  // Label'lari guncelle
+  for(var i=0;i<count;i++){
+    var lbl=document.getElementById('lbl'+i);
+    if(lbl) lbl.innerHTML=syms[i]+' <span style="color:#a855f7;font-size:10px">'+tf+'</span>';
+  }
+}
+
+function setCount(n){
+  count=n;
+  fullIdx=-1;
+  loaded=[];
+  zoneLayers=[];
+  localStorage.setItem('multiCount',n);
+  document.querySelectorAll('.btn').forEach(function(b){b.classList.remove('active');});
+  var b=document.querySelector('.btn[onclick="setCount('+n+')"]');
+  if(b) b.classList.add('active');
+
+  // Sembolleri sec — localStorage'dan veya default
+  var savedSyms=localStorage.getItem('multiSyms');
+  if(savedSyms){
+    try{
+      var parsed=JSON.parse(savedSyms);
+      if(parsed.length>=n){
+        syms=parsed.slice(0,n);
+      } else {
+        syms=parsed.concat(allSyms.filter(function(s){return parsed.indexOf(s)<0;}).slice(0,n-parsed.length));
+      }
+    }catch(e){
+      syms=[];
+      for(var i=0;i<n;i++) syms.push(allSyms[i]||'EURUSD');
+    }
+  } else {
+    syms=[];
+    for(var i=0;i<n;i++) syms.push(allSyms[i]||'EURUSD');
+  }
+
+  build();
+}
+
+function build(){
+  // Temizle
+  charts.forEach(function(c){try{c.remove()}catch(e){}});
+  charts=[];series=[];
+
+  var wrap=document.getElementById('wrap');
+  wrap.className='wrap';
+  var html='';
+
+  for(var i=0;i<count;i++){
+    var w,h;
+    if(count<=2){w='50%';h='100%';}
+    else if(count<=3){w='33.33%';h='100%';}
+    else if(count<=4){w='50%';h='50%';}
+    else if(count<=6){w='33.33%';h='50%';}
+    else{w='25%';h='50%';}
+
+    html+='<div class="cell" id="cell'+i+'" style="width:'+w+';height:'+h+'">';
+    html+='<div class="lbl" id="lbl'+i+'">'+syms[i]+' <span style="color:#a855f7;font-size:10px">'+tf+'</span></div>';
+    html+='<div class="prc" id="prc'+i+'">--</div>';
+    html+='<div class="ctrls">';
+    html+='<span onclick="nextSym('+i+')" title="Sonraki parite">▶</span>';
+    html+='<span onclick="goFull('+i+')" title="Tam ekran">⛶</span>';
+    html+='</div>';
+    html+='<div id="ch'+i+'" style="width:100%;height:100%"></div>';
+    html+='</div>';
+  }
+  wrap.innerHTML=html;
+
+  // Chart olustur — wait for DOM layout
+  setTimeout(function(){
+    for(var i=0;i<count;i++) createChart(i);
+  },300);
+}
+
+function createChart(idx){
+  if(typeof LightweightCharts==='undefined'){
+    setTimeout(function(){createChart(idx)},500);
+    return;
+  }
+  var el=document.getElementById('ch'+idx);
+  if(!el) return;
+  var r=el.getBoundingClientRect();
+  if(r.width<10||r.height<10){
+    setTimeout(function(){createChart(idx)},300);
+    return;
+  }
+
+  var c=LightweightCharts.createChart(el,{
+    width:Math.max(r.width,50),
+    height:Math.max(r.height,50),
+    layout:{background:{type:'solid',color:'#0a0a0f'},textColor:'#8888aa',fontFamily:'monospace',fontSize:9},
+    grid:{vertLines:{color:'#1a1a2e'},horzLines:{color:'#1e1e38'}},
+    crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
+    rightPriceScale:{borderColor:'#1e1e3a',visible:true,minimumWidth:45},
+    timeScale:{borderColor:'#1e1e3a',timeVisible:true,secondsVisible:false,rightOffset:15,barSpacing:count>=6?1.5:count>=5?2:count>=4?3:5},
+    handleScroll:{mouseWheel:true,pressedMouseMove:true},
+    handleScale:{mouseWheel:true,pinch:true},
+  });
+
+  var pf={type:'price',precision:5,minMove:0.00001};
+  var sym=syms[idx].toUpperCase();
+  if(sym.indexOf('JPY')>=0) pf={type:'price',precision:3,minMove:0.001};
+  if(sym.indexOf('XAU')>=0) pf={type:'price',precision:2,minMove:0.01};
+  if(sym.indexOf('XAG')>=0) pf={type:'price',precision:3,minMove:0.001};
+  if(sym.match(/US1|US3|US5|DE4|USTEC/)) pf={type:'price',precision:1,minMove:0.1};
+
+  var s=c.addCandlestickSeries({
+    upColor:'#22c55e',downColor:'#ef4444',borderUpColor:'#22c55e',borderDownColor:'#ef4444',
+    wickUpColor:'#22c55e',wickDownColor:'#ef4444',
+    lastValueVisible:true,priceLineVisible:true,priceLineColor:'#f59e0b',priceLineStyle:2,
+    priceFormat:pf,
+  });
+
+  charts[idx]=c;
+  series[idx]=s;
+
+  new ResizeObserver(function(entries){
+    var cr=entries[0].contentRect;
+    if(cr.width>10&&cr.height>10) c.applyOptions({width:cr.width,height:cr.height});
+  }).observe(el);
+
+  loadData(idx);
+}
+
+function loadData(idx){
+  var sym=syms[idx];
+  if(!sym) return;
+  var cnt=loaded[idx]?2:200;  // First load: 200, updates: only last 2
+  fetch(API+'/candles/'+encodeURIComponent(sym)+'?timeframe='+tf+'&count='+cnt)
+  .then(function(r){if(!r.ok) throw new Error(r.status);return r.json()})
+  .then(function(d){
+    var raw=(d.candles||[]).filter(function(x){return x.time&&x.open;}).sort(function(a,b){return a.time-b.time;});
+    var u=[];var lt=0;
+    raw.forEach(function(x){if(x.time>lt){u.push(x);lt=x.time;}});
+    if(!u.length||!series[idx]) return;
+
+    if(!loaded[idx]){
+      series[idx].setData(u);
+      charts[idx].timeScale().fitContent();
+      loaded[idx]=true;
+      drawZonesForChart(idx, sym);
+    } else {
+      var last=u[u.length-1];
+      series[idx].update(last);
+    }
+
+    // Fiyat
+    var last=u[u.length-1];
+    var el=document.getElementById('prc'+idx);
+    if(last&&el){
+      var dec=5;
+      if(last.close>1000) dec=1;
+      else if(last.close>10) dec=3;
+      el.textContent=last.close.toFixed(dec);
+      el.style.color=last.close>=last.open?'#22c55e':'#ef4444';
+    }
+  }).catch(function(e){
+    console.error('loadData error for '+sym+':',e);
+    var el=document.getElementById('prc'+idx);
+    if(el){el.textContent='ERR';el.style.color='#ef4444';}
+  });
+}
+
+function drawZonesForChart(idx, sym){
+  // Temizle
+  if(zoneLayers[idx]){
+    zoneLayers[idx].forEach(function(zs){try{charts[idx].removeSeries(zs)}catch(e){}});
+  }
+  zoneLayers[idx]=[];
+
+  if(!charts[idx]) return;
+
+  var tfSec={'M1':60,'M5':300,'M15':900,'M30':1800,'H1':3600,'H4':14400,'D1':86400};
+  var cSec=tfSec[tf]||60;
+  var now=Math.floor(Date.now()/1000);
+  var zf=zones.filter(function(z){return z.symbol===sym && z.timeframe===tf;}).slice(0,6);
+
+  zf.forEach(function(z){
+    var t1=z.start_time||0;
+    if(!t1) return;
+    var st=z.status||'';
+    var isLive=(st==='fresh'||st==='active'||st==='departed'||st==='watching');
+    var t2=isLive?(now+cSec*3):Math.min(now,(z.end_time||t1)+cSec*20);
+    var isDemand=(z.zone_type||z.type)==='demand';
+    var pts=[];
+    for(var t=t1;t<=t2;t+=cSec) pts.push({time:t,value:z.high});
+    if(pts.length<2) return;
+    try{
+      var zSeries=charts[idx].addBaselineSeries({
+        baseValue:{type:'price',price:z.low},
+        topLineColor:isDemand?'rgba(34,197,94,0.5)':'rgba(239,68,68,0.5)',
+        topFillColor1:isDemand?'rgba(34,197,94,0.12)':'rgba(239,68,68,0.12)',
+        topFillColor2:isDemand?'rgba(34,197,94,0.12)':'rgba(239,68,68,0.12)',
+        bottomLineColor:'transparent',bottomFillColor1:'transparent',bottomFillColor2:'transparent',
+        lineWidth:1,lastValueVisible:false,priceLineVisible:false,crosshairMarkerVisible:false,
+      });
+      zSeries.setData(pts);
+      zoneLayers[idx].push(zSeries);
+    }catch(e){}
+  });
+}
+
+function nextSym(idx){
+  var ci=allSyms.indexOf(syms[idx]);
+  syms[idx]=allSyms[(ci+1)%allSyms.length];
+  document.getElementById('lbl'+idx).innerHTML=syms[idx]+' <span style="color:#a855f7;font-size:10px">'+tf+'</span>';
+  // Sembol degisti — bastan yukle
+  loaded[idx]=false;
+  zoneLayers[idx]=[];
+  if(charts[idx]){try{charts[idx].remove()}catch(e){}}
+  createChart(idx);
+  // Sembolleri kaydet
+  localStorage.setItem('multiSyms',JSON.stringify(syms));
+}
+
+function goFull(idx){
+  var wrap=document.getElementById('wrap');
+  if(fullIdx===idx){
+    // Cik
+    fullIdx=-1;
+    wrap.classList.remove('full');
+    for(var i=0;i<count;i++){
+      var cell=document.getElementById('cell'+i);
+      if(cell) cell.classList.remove('active');
+    }
+  } else {
+    fullIdx=idx;
+    wrap.classList.add('full');
+    for(var i=0;i<count;i++){
+      var cell=document.getElementById('cell'+i);
+      if(cell){
+        if(i===idx) cell.classList.add('active');
+        else cell.classList.remove('active');
+      }
+    }
+  }
+  // Resize
+  setTimeout(function(){window.dispatchEvent(new Event('resize'));},150);
+}
+
+// ─── WEBSOCKET LIVE UPDATES ───
+var ws=null;
+var wsRetry=0;
+function connectWS(){
+  var proto=location.protocol==='https:'?'wss:':'ws:';
+  var wsBase=location.pathname.indexOf('/sniperx/')>=0?'/sniperx':'';
+  var url=proto+'//'+location.host+wsBase+'/ws';
+  ws=new WebSocket(url);
+  ws.onopen=function(){
+    wsRetry=0;
+    // Subscribe all visible symbols
+    if(syms.length&&tf) ws.send(JSON.stringify({symbols:syms,tf:tf}));
+  };
+  ws.onmessage=function(e){
+    try{
+      var d=JSON.parse(e.data);
+      if(d.type==='update'){
+        // Update zones
+        if(d.zones){
+          var oldHash=JSON.stringify(zones.map(function(z){return (z.start_time||0)+'_'+z.high}));
+          var newHash=JSON.stringify(d.zones.map(function(z){return (z.start_time||0)+'_'+z.high}));
+          zones=d.zones;
+          if(oldHash!==newHash){
+            for(var i=0;i<count;i++) drawZonesForChart(i, syms[i]);
+          }
+        }
+        // Update live candles per symbol
+        if(d.live_candles){
+          for(var i=0;i<count;i++){
+            var sym=syms[i];
+            var candle=d.live_candles[sym];
+            if(candle&&series[i]&&loaded[i]){
+              try{
+                series[i].update(candle);
+                // Update price display
+                var el=document.getElementById('prc'+i);
+                if(el){
+                  var dec=5;
+                  if(candle.close>1000) dec=1;
+                  else if(candle.close>10) dec=3;
+                  el.textContent=candle.close.toFixed(dec);
+                  el.style.color=candle.close>=candle.open?'#22c55e':'#ef4444';
+                }
+              }catch(ex){}
+            }
+          }
+        }
+      }
+    }catch(ex){}
+  };
+  ws.onclose=function(){
+    wsRetry++;
+    var delay=Math.min(wsRetry*2000,10000);
+    setTimeout(connectWS,delay);
+  };
+  ws.onerror=function(){ws.close()};
+}
+connectWS();
+
+// Mum full refresh — every 5 seconds (WS gives live tick, this catches new bars)
+setInterval(function(){
+  for(var i=0;i<count;i++) loadData(i);
+},5000);
+
+// Resubscribe when TF or symbols change
+var _origSetTF=setTF;
+setTF=function(newTF){
+  _origSetTF(newTF);
+  if(ws&&ws.readyState===1) ws.send(JSON.stringify({symbols:syms,tf:newTF}));
+};
+var _origNextSym=nextSym;
+nextSym=function(idx){
+  _origNextSym(idx);
+  if(ws&&ws.readyState===1) ws.send(JSON.stringify({symbols:syms,tf:tf}));
+};
+</script>
+</body>
+</html>

@@ -217,19 +217,36 @@ class TradeManager:
 
     async def update_trailing_stop(self, position: Position, current_price: float,
                                    zone_height: float):
-        """Update trailing stop after TP1 hit."""
+        """Update trailing stop after TP1 hit.
+
+        Runner modes (from settings.runner_mode):
+        - atrTrail: trail at 1.5x zone_height distance (default)
+        - fixed3R / fixed5R: close at fixed R target
+        - swingTrail: trail to swing level
+        """
         if not position.tp1_hit:
             return
 
-        activation_rr = self.settings.get("trailing_activation_rr", 1.5)
-        trail_mult = self.settings.get("trailing_distance_mult", 0.8)
+        activation_rr = self.settings.get("trailing_activation_rr", 2.0)
+        trail_mult = self.settings.get("trailing_distance_mult", 1.5)
+        runner_mode = self.settings.get("runner_mode", "atrTrail")
         risk = abs(position.entry_price - position.stop_loss)
 
-        # Check if trailing should activate
         r_current = self.get_r_result(position, current_price)
         if r_current < activation_rr:
             return
 
+        # Fixed R runner modes
+        if runner_mode in ("fixed3R", "fixed5R"):
+            target_r = 3.0 if runner_mode == "fixed3R" else float(self.settings.get("tp2_rr", 5.0))
+            if r_current >= target_r:
+                await self.broker.close_full(position.ticket)
+                position.status = "closed"
+                position.r_result = round(r_current, 2)
+                logger.info(f"RUNNER TP: {position.ticket} R={r_current:.1f} (mode={runner_mode})")
+            return
+
+        # ATR trail mode (default)
         position.trailing_active = True
         trailing_distance = zone_height * trail_mult
 
