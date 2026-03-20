@@ -173,6 +173,7 @@ class PinShotBot:
                 tg.get("bot_token", ""),
                 tg.get("chat_id", ""),
             )
+            self.telegram.set_bot_engine(self)
 
     async def scan_loop(self):
         """Main scanning loop — scans ALL symbols x ALL timeframes."""
@@ -246,6 +247,14 @@ class PinShotBot:
                         logger.error(f"Scan error {sym_name}/{tf}: {e}")
                     # Yield control so web server can respond
                     await asyncio.sleep(0.1)
+            # Telegram: hourly summary + command polling
+            if self.telegram:
+                try:
+                    await self.telegram.send_hourly_summary(self)
+                    await self.telegram.poll_commands()
+                except Exception:
+                    pass
+
             await asyncio.sleep(self.config.get("scan_interval", 5))
 
     def _get_pip(self, symbol: str) -> float:

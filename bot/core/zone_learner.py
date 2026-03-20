@@ -278,7 +278,7 @@ class ZoneLearner:
                 existing["sample_count"] = existing.get("sample_count", 1) + 1
                 existing["learned_at"] = time.time()
                 # Auto-promote to approved after 3 occurrences
-                if existing.get("status") == "proposed" and existing["occurrence_count"] >= 3:
+                if existing.get("status") == "proposed" and existing["occurrence_count"] >= 10:
                     existing["status"] = "approved"
                     logger.info(f"PATTERN AUTO-APPROVED: {existing['pattern']} (count={existing['occurrence_count']})")
                 logger.info(f"ANNOTATION (updated): {existing['pattern']} "
@@ -481,7 +481,7 @@ class ZoneLearner:
                 existing["occurrence_count"] = existing.get("occurrence_count", 1) + 1
                 existing["sample_count"] = existing.get("sample_count", 1) + 1
                 existing["learned_at"] = time.time()
-                if existing.get("status") == "proposed" and existing["occurrence_count"] >= 3:
+                if existing.get("status") == "proposed" and existing["occurrence_count"] >= 10:
                     existing["status"] = "approved"
                     logger.info(f"ANNOTATION PATTERN AUTO-APPROVED: {existing['pattern']}")
                 logger.info(f"ANNOTATION LEARNED (updated): {existing['pattern']} count={existing['occurrence_count']}")
