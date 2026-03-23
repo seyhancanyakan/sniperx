@@ -95,8 +95,42 @@ async def shutdown():
 
 # ─── Endpoints ───
 
+
+def ensure_mt5():
+    """Auto-reconnect to MT5 if connection lost."""
+    if not MT5_OK:
+        return False
+    info = mt5.account_info()
+    if info is not None:
+        return True
+    # Try to reconnect
+    login = int(os.environ.get("MT5_LOGIN", "0"))
+    password = os.environ.get("MT5_PASSWORD", "")
+    server = os.environ.get("MT5_SERVER", "HFMarkets-Demo")
+    path = os.environ.get("MT5_PATH", "")
+    kwargs = {"login": login, "password": password, "server": server}
+    if path:
+        kwargs["path"] = path
+    if mt5.initialize(**kwargs):
+        info = mt5.account_info()
+        logger.info(f"MT5 reconnected: {info.login if info else '?'}")
+        return True
+    logger.warning(f"MT5 reconnect failed: {mt5.last_error()}")
+    return False
+
+
+@app.get("/reconnect")
+async def reconnect(_=Depends(check_auth)):
+    """Force MT5 reconnection."""
+    if ensure_mt5():
+        info = mt5.account_info()
+        return {"status": "connected", "login": info.login if info else 0}
+    return JSONResponse({"status": "failed", "error": str(mt5.last_error())}, 500)
+
+
 @app.get("/candles/{symbol}/{timeframe}/{count}")
 async def get_candles(symbol: str, timeframe: str, count: int, _=Depends(check_auth)):
+    ensure_mt5()
     tf = TF_MAP.get(timeframe)
     if tf is None:
         return JSONResponse({"error": f"Unknown timeframe: {timeframe}"}, 400)
@@ -113,6 +147,7 @@ async def get_candles(symbol: str, timeframe: str, count: int, _=Depends(check_a
 
 @app.get("/price/{symbol}")
 async def get_price(symbol: str, _=Depends(check_auth)):
+    ensure_mt5()
     tick = mt5.symbol_info_tick(symbol)
     if tick is None:
         return {"bid": 0, "ask": 0, "spread": 0, "error": str(mt5.last_error())}
@@ -121,6 +156,7 @@ async def get_price(symbol: str, _=Depends(check_auth)):
 
 @app.get("/account")
 async def get_account(_=Depends(check_auth)):
+    ensure_mt5()
     info = mt5.account_info()
     if info is None:
         return {"error": str(mt5.last_error())}

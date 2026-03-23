@@ -1,1 +1,2317 @@
-[]
+[
+  {
+    "id": "hist_AUDUSD_M15_1983",
+    "pattern": "supply_zone_retest_after_displacement",
+    "description": "Short entry at supply zone after bearish displacement and retracement to premium pricing. Entry coincided with multiple rejections at the 0.7088-0.7108 supply area following a strong bearish impulse move from 0.71182 down to 0.70177.",
+    "description_tr": "Giri\u015f: 0.7088 seviyesindeki supply zone'da a\u015fa\u011f\u0131 y\u00f6nl\u00fc displacement sonras\u0131 geri \u00e7ekilmeye k\u0131sa giri\u015f. \u00d6nceki g\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f momentumu (0.7118\u21920.7017) ve \u00e7oklu reddedilme bu seviyede. Sonu\u00e7: Trade kazand\u0131 - fiyat supply zone'dan beklenen \u015fekilde devam etti.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "clear_displacement_candle_before_entry",
+      "retest_of_supply_after_significant_drop",
+      "multiple_touches_at_zone_boundary",
+      "premium_pricing_entry_for_shorts"
+    ],
+    "entry_features": [
+      "bearish_displacement_from_0.71182_to_0.70177_visible",
+      "retracement_to_supply_zone_0.7088_area",
+      "multiple_rejections_at_0.7088_0.7108_level",
+      "price_at_premium_relative_to_recent_range",
+      "moderate_volume_at_supply_on_approach"
+    ],
+    "hindsight_features": [
+      "strong_bearish_candle_after_entry_L0.70629",
+      "continued_downside_to_0.70261",
+      "volume_increase_during_drop_V31100",
+      "clean_swing_high_failure_at_0.70970"
+    ],
+    "avoid_features": [
+      "somewhat_choppy_price_action_in_basing_area",
+      "no_extreme_volume_spike_at_entry_candle"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Zone held cleanly but entries should await bearish confirmation candle at supply rather than anticipating rejection",
+    "source_symbol": "AUDUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "AUDUSD_M15_1983",
+    "source_type": "history",
+    "learned_at": 1774021399.5595694,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 14.63,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.980828,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774022095.5606384
+  },
+  {
+    "id": "hist_AUDUSD_H1_1841",
+    "pattern": "pullback_short_in_uptrend",
+    "description": "Short entry placed at pullback low within strong bullish momentum - no bearish displacement or structure breakdown visible at entry",
+    "description_tr": "G\u00fc\u00e7l\u00fc y\u00fckseli\u015f trendinin i\u00e7indeki geri \u00e7ekilme dibine short giri\u015f yap\u0131lm\u0131\u015f. D\u00fc\u015f\u00fc\u015f displacement yok, trende kar\u015f\u0131 i\u015flem.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "confirmed_bearish_displacement",
+      "lower_high_and_lower_low_structure",
+      "supply_zone_with_rejection_confirmation",
+      "multiple_timeframe_trend_alignment"
+    ],
+    "entry_features": [
+      "strong_bullish_momentum_preceding_entry",
+      "price_rallied_from_0.70987_to_0.71812",
+      "single_bearish_candle_at_entry",
+      "entry_candle_closed_near_its_low",
+      "no_lower_lows_in_broader_structure",
+      "entry_at_local_pullback_support"
+    ],
+    "hindsight_features": [
+      "price_immediately_reversed_up_after_entry",
+      "next_candle_moved_to_0.71719",
+      "uptrend_resumed_strongly",
+      "no_actual_trend_reversal_occurred"
+    ],
+    "avoid_features": [
+      "shorting_without_bearish_displacement",
+      "entries_at_pullback_lows_during_uptrend",
+      "counter_trend_trades_without_structure_break",
+      "single_candle_reversal_signals_in_strong_trends"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend entries require clear displacement and structure change - not just single candle pullbacks",
+    "source_symbol": "AUDUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "AUDUSD_H1_1841",
+    "source_type": "history",
+    "learned_at": 1774021455.09026,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -12.53,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 0,
+    "decay_score": 1.0,
+    "live_stats": {
+      "zones_with_bonus": 0,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774022098.6537836
+  },
+  {
+    "id": "hist_CADJPY_M15_1901",
+    "pattern": "V-Reversal Momentum Entry",
+    "description": "Long entry at 115.325 came after a significant bearish displacement from 116.34 to 114.69. Price was recovering from extreme lows with bullish momentum candle (open at low, close near high). No clear base structure formed - this was a momentum/reversal entry catching the bounce off the lows.",
+    "description_tr": "Giri\u015f: 116.34'ten 114.69'a g\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f sonras\u0131 toparlanma yakaland\u0131. Net taban formasyonu yok, momentum giri\u015fi. Uyar\u0131: Geri d\u00f6n\u00fc\u015f zaten ba\u015flam\u0131\u015ft\u0131. Sonu\u00e7: H\u0131zl\u0131 kar alma ba\u015far\u0131l\u0131 oldu, momentum devam etti.",
+    "confidence_bonus": 5,
+    "trigger_features": [
+      "displacement_to_extreme_lows",
+      "bullish_momentum_candles_off_lows",
+      "quick_profit_targets_on_reversal_trades"
+    ],
+    "entry_features": [
+      "prior_bearish_displacement_from_116.34_to_114.69",
+      "extreme_low_at_114.691_with_bounce",
+      "bullish_momentum_candle_opening_at_low",
+      "recovery_from_oversold_territory"
+    ],
+    "hindsight_features": [
+      "next_candle_extended_to_115.804_providing_room",
+      "quick_6_pip_profit_taken_before_consolidation",
+      "overall_downtrend_remained_intact_later"
+    ],
+    "avoid_features": [
+      "no_clear_base_structure_at_entry",
+      "entry_after_bounce_already_started",
+      "counter_trend_without_confirmed_reversal_pattern"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Reversal entries without base structure are higher risk. Quick profit taking helped - full reversal did not materialize as trend remained bearish.",
+    "source_symbol": "CADJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "CADJPY_M15_1901",
+    "source_type": "history",
+    "learned_at": 1774021507.1233406,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 611.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264325.7246592,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 5,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774022101.0853179
+  },
+  {
+    "id": "hist_CADJPY_M15_1938",
+    "pattern": "counter_trend_support_reversal",
+    "description": "Counter-trend long entry at potential support after significant decline, but entered against strong downtrend momentum with no bullish displacement confirmation visible at entry time.",
+    "description_tr": "Giri\u015f an\u0131nda: 117'den 114.7'ye g\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f, d\u00fc\u015f\u00fck seviyede \u00e7eki\u00e7 formasyonu ama yukar\u0131 y\u00f6nl\u00fc yer de\u011fi\u015ftirme (displacement) yoktu. Riskli kar\u015f\u0131 trend al\u0131m. Sonu\u00e7: Fiyat destekten d\u00f6nd\u00fc ve kar kapand\u0131.",
+    "confidence_bonus": -5,
+    "trigger_features": [
+      "clear_support_level_tests",
+      "rejection_candle_patterns",
+      "volume_confirmation_at_lows"
+    ],
+    "entry_features": [
+      "price_at_lower_range_boundary",
+      "potential_hammer_candle_at_lows",
+      "moderate_volume_at_support_test"
+    ],
+    "hindsight_features": [
+      "actual_reversal_confirmed",
+      "support_held_at_114.691",
+      "follow_through_occurred"
+    ],
+    "avoid_features": [
+      "strong_prior_downtrend_117_to_114",
+      "no_bullish_displacement_at_entry",
+      "counter_momentum_entry",
+      "buying_into_declining_price_action"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend entries without displacement confirmation are high-risk even when profitable. This trade succeeded but similar setups often fail when momentum continues.",
+    "source_symbol": "CADJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "CADJPY_M15_1938",
+    "source_type": "history",
+    "learned_at": 1774021559.4704373,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 1512.33,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774218756.4450774,
+    "decay_score": 0.92,
+    "live_stats": {
+      "zones_with_bonus": 1,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774022103.8096964
+  },
+  {
+    "id": "hist_CADJPY_H1_1802",
+    "pattern": "displacement_recovery_flip",
+    "description": "Long entry after significant displacement low with recovery structure showing higher lows. Entry occurred as price reclaimed the flip zone around 116.00 area after dropping from 117+ to 114.69. The base formation at 115.00-115.80 provided accumulation before the breakout.",
+    "description_tr": "117'den 114.69'a sert d\u00fc\u015f\u00fc\u015f sonras\u0131 toparlanma. 115-116 b\u00f6lgesinde taban olu\u015fumu, y\u00fckselen dipler. 116.0255'ten flip zone geri al\u0131m\u0131na giri\u015f yap\u0131lm\u0131\u015f. D\u00fc\u015f\u00fc\u015f sonras\u0131 toparlanma momentumu devam etmi\u015f.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "clear_displacement_moves_creating_liquidity_voids",
+      "higher_low_sequence_in_recovery_phase",
+      "flip_zone_reclaim_setups",
+      "accumulation_bases_at_key_levels"
+    ],
+    "entry_features": [
+      "major_displacement_from_117_to_114.69_visible",
+      "higher_lows_forming_114.69_115.27_115.54_115.78",
+      "base_consolidation_115.00-115.80_zone",
+      "flip_zone_around_116.00_area",
+      "recovery_momentum_from_oversold_conditions"
+    ],
+    "hindsight_features": [
+      "recovery_continued_seamlessly_to_116.297",
+      "no_deep_pullback_after_entry",
+      "volume_supported_the_move",
+      "clean_27_pip_run_without_significant_retracement"
+    ],
+    "avoid_features": [
+      "last_candle_showed_rejection_at_116.014_upper_wick",
+      "declining_volume_on_last_candle_18472_vs_29238",
+      "entry_without_pullback_to_base_for_better_risk"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was aggressive without pullback confirmation. Last candle rejection at 116.014 was a warning. Better entry would be on retest of 115.80 area. Displacement recovery plays can reverse if momentum fades.",
+    "source_symbol": "CADJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "CADJPY_H1_1802",
+    "source_type": "history",
+    "learned_at": 1774021616.610613,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 2717.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264325.724667,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 5,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774022106.3254802
+  },
+  {
+    "id": "hist_GBPJPY_H4_1695_1767916800",
+    "pattern": "base_breakout_flip_retest",
+    "description": "Long entry after base formation at demand zone following bearish displacement. Entry at 210.8285 came after price formed a consolidation base around 210.1-210.3 area with bullish displacement candle breaking higher. The trade captured continuation from flip zone retest.",
+    "description_tr": "Giri\u015f: 210.8285 - D\u00fc\u015f\u00fc\u015f deplasman\u0131 sonra 210.1-210.3 b\u00f6lgesinde taban olu\u015ftu. Y\u00fckseli\u015f momentumu ile flip zone retesti. Sonu\u00e7: 211.6124'ten karl\u0131 \u00e7\u0131k\u0131\u015f. Ders: G\u00fc\u00e7l\u00fc deplasman sonras\u0131 taban formasyonlar\u0131 ve flip zone geri d\u00f6n\u00fc\u015fleri ara\u015ft\u0131r\u0131lmal\u0131.",
+    "confidence_bonus": 10,
+    "trigger_features": [
+      "clear_base_after_displacement",
+      "flip_zone_confluence",
+      "bullish_displacement_with_volume",
+      "wick_rejections_at_demand_zone"
+    ],
+    "entry_features": [
+      "bearish_displacement_to_210.1",
+      "base_formation_210.1_210.3",
+      "bullish_displacement_candle_with_wick_rejection",
+      "flip_zone_at_210.8_area",
+      "higher_lows_forming_in_recovery"
+    ],
+    "hindsight_features": [
+      "strong_continuation_without_deep_retest",
+      "exit_near_swing_high_211.6",
+      "volume_increased_on_breakout",
+      "no_pullback_to_entry_after_breakout"
+    ],
+    "avoid_features": [
+      "entry_above_base_high_210.3",
+      "moderate_risk_entry_mid_range",
+      "prior_strong_bearish_momentum_context"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "both",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was above optimal zone level - better entries exist at base boundary (210.3). Trade succeeded due to continued momentum but similar entries carry higher risk if momentum fails.",
+    "source_symbol": "GBPJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "GBPJPY_H4_1695_1767916800",
+    "source_type": "history",
+    "learned_at": 1774023102.4853673,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 7839.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264587.013394,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 1837,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774023166.6023374
+  },
+  {
+    "id": "hist_AUDJPY_M15_19843_1773889200",
+    "pattern": "weak_demand_zone_entry",
+    "description": "Long entry at demand zone upper boundary without clear displacement confirmation; price was in consolidation with weak bullish structure. Entry lacked strong breakout or displacement candle confirmation.",
+    "description_tr": "Talep b\u00f6lgesi \u00fcst s\u0131n\u0131r\u0131na girildi ancak g\u00fc\u00e7l\u00fc bir yer de\u011fi\u015ftirme (displacement) mumu yoktu. Fiyat konsolidasyonda, k\u0131r\u0131lgan bir y\u00fckseli\u015f yap\u0131s\u0131ndayd\u0131. Sonu\u00e7: B\u00f6lge tutmad\u0131, fiyat alt\u0131na d\u00fc\u015ft\u00fc.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "clear_displacement_candle_before_entry",
+      "entry_after_flip_confirmation",
+      "strong_volume_spike_at_zone",
+      "entry_at_fresh_demand_not_retested_zone"
+    ],
+    "entry_features": [
+      "price_at_prior_swing_low_area_near_112.40",
+      "recent_bullish_structure_from_111.48_to_113.20",
+      "no_clear_displacement_candle_at_entry",
+      "consolidation_range_112.30_to_113.20",
+      "moderate_volume_at_zone",
+      "entry_at_range_midpoint_not_extreme"
+    ],
+    "hindsight_features": [
+      "zone_failed_completely_price_dropped_below",
+      "strong_bearish_candle_followed_entry",
+      "exit_112.366_was_prior_candle_close_level",
+      "no_institutional_reaction_at_zone",
+      "continued_decline_after_exit"
+    ],
+    "avoid_features": [
+      "entries_without_displacement_confirmation",
+      "buying_at_upper_boundary_of_demand_zone",
+      "entering_during_consolidation_without_breakout",
+      "lack_of_imbalance_near_entry_level"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Demand zone entries require displacement confirmation; this entry was premature without clear rejection evidence",
+    "source_symbol": "AUDJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "AUDJPY_M15_19843_1773889200",
+    "source_type": "history",
+    "learned_at": 1774023147.1410913,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -565.5,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264587.0134003,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 1836,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774023157.9317803
+  },
+  {
+    "id": "hist_USTEC_H1_4685_1772506800",
+    "pattern": "breakdown_after_rejection",
+    "description": "Short entry after bearish displacement from swing high at 25153. Entry near close of strong bearish candle that rejected highs. Trade won as bearish momentum continued.",
+    "description_tr": "25153 seviyesindeki swing y\u00fcksekten sonra g\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f momuntumu. Bearish displacement mumu kapan\u0131\u015f\u0131na yak\u0131n giri\u015f yap\u0131lm\u0131\u015f. Sat\u0131\u015f bask\u0131s\u0131 devam etti ve karl\u0131 kapand\u0131.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "clear_swing_high_rejection",
+      "strong_bearish_displacement_candle",
+      "entry_after_impulse_move_confirms"
+    ],
+    "entry_features": [
+      "swing_high_rejection_at_25153",
+      "bearish_displacement_candle_25142_to_24913",
+      "entry_near_displacement_close",
+      "prior_rally_to_new_highs_then_rejection"
+    ],
+    "hindsight_features": [
+      "continuation_bearish_momentum",
+      "lower_lows_formed_consistently",
+      "exit_at_24797_captured_180_points"
+    ],
+    "avoid_features": [
+      "no_base_consolidation_before_entry",
+      "entry_chasing_displacement_without_pullback"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Entry lacked base structure - higher risk. Better to wait for retest of broken level or small consolidation before entry.",
+    "source_symbol": "USTEC",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "USTEC_H1_4685_1772506800",
+    "source_type": "history",
+    "learned_at": 1774023260.0741148,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 1805050.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.9808414,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025441.7064767
+  },
+  {
+    "id": "hist_GBPJPY_M15_19845_1773891000",
+    "pattern": "failed_pullback_long",
+    "description": "Long entry attempted during a weak pullback after a strong bearish rejection at 212.77. No displacement or base structure was present - price was still in a volatile range with bearish pressure.",
+    "description_tr": "212.77 seviyesinde g\u00fc\u00e7l\u00fc sat\u0131\u015f reddi sonras\u0131 zay\u0131f bir geri \u00e7ekilme s\u0131ras\u0131nda long giri\u015f yap\u0131lm\u0131\u015f. Displacement veya base yap\u0131s\u0131 yoktu. Fiyat hala belirsiz aral\u0131kta idi. Giri\u015f an\u0131nda: yukar\u0131 momentumun zay\u0131flad\u0131\u011f\u0131, net destek yoktu. Sonu\u00e7: fiyat a\u015fa\u011f\u0131 devam etti.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "clear_displacement_candle_after_base",
+      "entry_at_verified_demand_zone",
+      "bullish_engulfing_or_reversal_confirmation",
+      "flip_zone_validation_with_retest"
+    ],
+    "entry_features": [
+      "price_recovering_from_211.75_low",
+      "previous_bullish_run_211.47_to_212.77",
+      "no_clear_base_formation",
+      "entry_at_mid_range_not_at_support",
+      "lack_of_displacement_confirmation"
+    ],
+    "hindsight_features": [
+      "strong_rejection_at_212.77_created_bearish_pressure",
+      "pullback_was_actually_reversal_continuation",
+      "no_institutional_demand_zone_present",
+      "bearish_momentum_was_building"
+    ],
+    "avoid_features": [
+      "entering_after_upper_wick_rejection_without_confirmation",
+      "buying_mid_range_without_clear_support",
+      "trading_pullbacks_without_displacement",
+      "ignoring_volatile_range_conditions"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Entry lacked structural confirmation. The 212.77 rejection should have been a warning sign. Wait for base + displacement before entering pullbacks.",
+    "source_symbol": "GBPJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "GBPJPY_M15_19845_1773891000",
+    "source_type": "history",
+    "learned_at": 1774023316.699411,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -1356.87,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264662.0949624,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 6488,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024739.1059947
+  },
+  {
+    "id": "hist_NZDJPY_H1_4816_1773194400",
+    "pattern": "recovery_continuation",
+    "description": "Entry at 93.820 was a retest of a broken structure level during a strong recovery phase. The zone had been support (93.8-94.0 area) before the drop to 92.1, but price was recovering with momentum. Selling into recovery without clear rejection confirmation was premature.",
+    "description_tr": "Giri\u015f fiyat\u0131 93.820, daha \u00f6nce destek olan bir b\u00f6lgeydi. Fiyat 94'ten 92.1'e d\u00fc\u015fm\u00fc\u015f sonra toparlan\u0131yordu. G\u00fc\u00e7l\u00fc toparlanma an\u0131nda sat\u0131\u015f yapmak erken oldu. Diren\u00e7 testinde net reddedilme beklenmeliydi.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "clear_bearish_displacement_before_entry",
+      "rejection_candle_at_resistance",
+      "alignment_with_overall_trend_direction"
+    ],
+    "entry_features": [
+      "price_recovered_from_lows_92.1_to_93.8",
+      "entry_at_previous_support_zone_93.8_94.0",
+      "no_clear_displacement_at_entry",
+      "recovery_candles_showing_bullish_momentum"
+    ],
+    "hindsight_features": [
+      "recovery_continued_past_entry_to_93.85",
+      "zone_failed_to_hold_as_resistance",
+      "stop_loss_triggered_quickly"
+    ],
+    "avoid_features": [
+      "selling_into_strong_recovery_momentum",
+      "entering_without_bearish_rejection_candle",
+      "counter_recovery_direction_trades"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Flip zones during recovery phases need explicit rejection confirmation. Entry was premature without bearish price action confirmation.",
+    "source_symbol": "NZDJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "NZDJPY_H1_4816_1773194400",
+    "source_type": "history",
+    "learned_at": 1774023432.763964,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -356.42,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 0,
+    "decay_score": 1.0,
+    "live_stats": {
+      "zones_with_bonus": 0,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024787.9759526
+  },
+  {
+    "id": "hist_AUDJPY_H1_4619_1772121600",
+    "pattern": "bearish_continuation_after_displacement",
+    "description": "Bearish continuation entry after displacement below a consolidation base. Entry at 111.0205 followed a strong bearish impulse from 112.327 to 111.162, with price failing to regain higher levels during the recovery phase.",
+    "description_tr": "Giri\u015f an\u0131nda: 112.327'den 111.162'ye g\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f (displacement) sonras\u0131 toparlanma zay\u0131f. 111.0205'ten short giri\u015f, d\u00fc\u015f\u00fc\u015f trendinin devam\u0131. Sonu\u00e7: 110.7774'e kadar devam eden momentum kar getirdi.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "strong_displacement_candle_with_volume_spike",
+      "lower_highs_confirming_trend_direction",
+      "weak_recovery_with_declining_volume",
+      "entry_after_price_fails_to_reclaim_prior_support_level"
+    ],
+    "entry_features": [
+      "strong_bearish_displacement_candle_112.327_to_111.162_with_high_volume_85825",
+      "lower_highs_sequence_from_113.6_to_112.3",
+      "weak_recovery_attempt_after_impulse_low_volume_declining",
+      "price_consolidating_below_prior_support_near_111.8_112.0",
+      "entry_below_recent_consolidation_range"
+    ],
+    "hindsight_features": [
+      "momentum_continued_to_110.7774_without_significant_retracement",
+      "no_reversal_pattern_formed_at_entry_level",
+      "clean_profit_target_reached"
+    ],
+    "avoid_features": [
+      "entering_below_recent_lows_can_be_chasing_without_clear_rejection",
+      "low_volume_on_recovery_candles_shows_lack_of_buying_but_also_lack_of_consolidation"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Continuation entries below recent lows carry gap risk. Verify that displacement candle has exceptional volume relative to surrounding candles. Entry was aggressive - could have waited for retest of broken level.",
+    "source_symbol": "AUDJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "AUDJPY_H1_4619_1772121600",
+    "source_type": "history",
+    "learned_at": 1774023475.5998793,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 2431.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 0,
+    "decay_score": 1.0,
+    "live_stats": {
+      "zones_with_bonus": 0,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025017.598241
+  },
+  {
+    "id": "hist_XAUUSD_H1_4675_1772467200",
+    "pattern": "consolidation_breakdown_short",
+    "description": "Entry was taken in a consolidation zone around 5000-5030 area before a major displacement event. The short position benefited from a subsequent crash candle with exceptional volume (108177) that broke the range decisively.",
+    "description_tr": "Giri\u015f, 5000-5030 konsolidasyon b\u00f6lgesinde yap\u0131ld\u0131. Sonras\u0131nda y\u00fcksek hacimli (108177) b\u00fcy\u00fck bir k\u0131r\u0131l\u0131m mumu olu\u015ftu ve fiyat ~4500'e kadar d\u00fc\u015ft\u00fc. Short pozisyon bu g\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f trendinden yararland\u0131.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "consolidation_after_extended_move_up",
+      "volume_spike_on_breakdown_candle",
+      "clean_close_below_range_lows",
+      "displacement_with_high_volume_confirmation"
+    ],
+    "entry_features": [
+      "price_consolidating_in_4970_5030_range",
+      "multiple_rejections_of_higher_prices",
+      "decreasing_volatility_before_break",
+      "no_clear_displacement_yet_visible"
+    ],
+    "hindsight_features": [
+      "massive_displacement_candle_at_1773835200",
+      "volume_spike_to_108177_on_breakdown",
+      "price_crashed_from_4992_to_4502",
+      "continuation_with_high_volume_selling",
+      "total_move_over_500_points_downside"
+    ],
+    "avoid_features": [
+      "entering_before_displacement_confirmed",
+      "no_clear_bearish_structure_at_entry",
+      "consolidation_without_directional_bias",
+      "early_entry_without_momentum_confirmation"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Entry price (5397.93) appears inconsistent with provided candle data range (4500-5238). Trade succeeded due to catching major displacement event, but entry timing before confirmation was risky.",
+    "source_symbol": "XAUUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "XAUUSD_H1_4675_1772467200",
+    "source_type": "history",
+    "learned_at": 1774023537.1795504,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 521776.67,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264631.5633204,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 8853,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024790.141983
+  },
+  {
+    "id": "hist_AUDUSD_M30_9604_1773142200",
+    "pattern": "premature_reversal_entry",
+    "description": "Short entry at 0.71128 was placed during a recovery rally without waiting for bearish confirmation. Price had bounced from 0.69787 low and was testing a potential supply zone, but no rejection candle had formed. The tight stop was hit by minor upside extension before the actual 70-pip drop occurred on the next candle.",
+    "description_tr": "Giri\u015f an\u0131nda fiyat 0.69787'den 0.711'e kadar toparlanm\u0131\u015ft\u0131. Sat\u0131\u015f yap\u0131labilir bir alan test ediliyordu ANCAK reddedici mum hen\u00fcz olu\u015fmam\u0131\u015ft\u0131. Stop \u00e7ok s\u0131k\u0131yd\u0131 ve as\u0131l d\u00fc\u015f\u00fc\u015f ger\u00e7ekle\u015fmeden \u00f6nce k\u00fc\u00e7\u00fck bir yukar\u0131 hareketle zarar edildi. Sonraki mumda 70 pip d\u00fc\u015f\u00fc\u015f geldi - zamanlama hatas\u0131.",
+    "confidence_bonus": -5,
+    "trigger_features": [
+      "wait_for_bearish_engulfing_or_pin_bar",
+      "larger_stop_buffer_near_key_levels",
+      "clear_displacement_before_counter_entry",
+      "volume_spike_at_rejection_point"
+    ],
+    "entry_features": [
+      "price_recovered_130_pips_from_low_0.69787",
+      "testing_potential_supply_zone_0.71128",
+      "no_bearish_rejection_candle_at_entry",
+      "low_volume_on_recovery_candles",
+      "consolidation_near_highs_0.711_0.712"
+    ],
+    "hindsight_features": [
+      "massive_70_pip_drop_occurred_next_candle_0.71127_to_0.70452",
+      "trade_direction_was_correct_but_timing_wrong",
+      "stop_loss_too_tight_for_volatility",
+      "entry_before_confirmation_cost_the_trade"
+    ],
+    "avoid_features": [
+      "entering_before_rejection_candle_confirms",
+      "tight_stops_in_volatile_conditions",
+      "shorting_recovery_moves_without_displacement",
+      "entering_mid_range_without_clear_extreme"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Direction was correct but execution timing caused loss. Consider wider stops or wait for confirmation candles before entry on reversal trades.",
+    "source_symbol": "AUDUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "AUDUSD_M30_9604_1773142200",
+    "source_type": "history",
+    "learned_at": 1774023649.9831455,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -0.78,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.9808507,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025440.0623848
+  },
+  {
+    "id": "hist_NZDUSD_M30_9841_1773745200",
+    "pattern": "counter_trend_pullback_entry",
+    "description": "Short entry into a recovery rally without clear bearish displacement or rejection. Price was pulling back within an ongoing bullish recovery from 0.5768 lows, not showing reversal confirmation.",
+    "description_tr": "Giri\u015f an\u0131nda fiyat 0.5768 dip seviyesinden g\u00fc\u00e7l\u00fc bir toparlanma i\u00e7indeydi. Short giri\u015f, net bir d\u00fc\u015f\u00fc\u015f momentumu veya reddedilme olmadan, sadece k\u00fc\u00e7\u00fck bir geri \u00e7ekilmeye yap\u0131l\u0131yor. Temiz tersine d\u00f6n\u00fc\u015f sinyali yoktu.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "clear_bearish_displacement_before_short",
+      "base_structure_with_momentum_shift",
+      "rejection_candles_with_displacement",
+      "trend_alignment_confirmation"
+    ],
+    "entry_features": [
+      "price_recovered_from_0.5768_swing_low",
+      "bullish_momentum_candle_1773662400_range_354_pips",
+      "entry_at_pullback_not_rejection",
+      "no_clear_bearish_displacement",
+      "no_established_base_structure"
+    ],
+    "hindsight_features": [
+      "price_continued_higher_to_0.589_after_entry",
+      "recovery_rally_remained_intact",
+      "exit_at_0.58550_stopped_out",
+      "no_reversal_occurred_at_entry_zone"
+    ],
+    "avoid_features": [
+      "shorting_into_bullish_recovery_without_displacement",
+      "entries_on_pullbacks_without_rejection_candles",
+      "counter_trend_trades_without_base_confirmation"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend entries require stronger confirmation. This entry lacked both displacement and proper rejection signals.",
+    "source_symbol": "NZDUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "NZDUSD_M30_9841_1773745200",
+    "source_type": "history",
+    "learned_at": 1774023699.5456977,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -7.09,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 0,
+    "decay_score": 1.0,
+    "live_stats": {
+      "zones_with_bonus": 0,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025019.0925097
+  },
+  {
+    "id": "hist_DE40_H4_1812_1770278400",
+    "pattern": "Premium Zone Short",
+    "description": "Short entry at premium price (24659) in established downtrend. Market showed consistent lower highs/lows with strong bearish momentum. Entry was well above recent candle range (24108 high), indicating either limit order at key resistance or gap fill setup.",
+    "description_tr": "Giri\u015f: 24659 seviyesi barlar\u0131n \u00fczerinde premium b\u00f6lgede. D\u00fc\u015f\u00fc\u015f trendi net: 24068\u219222408. D\u00fc\u015f\u00fck y\u00fcksekler ve d\u00fc\u015f\u00fck al\u00e7aklar. Flip zone veya diren\u00e7 testinden short. G\u00fc\u00e7li bearish momentum ile kazan\u0131ld\u0131.",
+    "confidence_bonus": 10,
+    "trigger_features": [
+      "Entries at elevated/premium prices above recent candles in downtrend",
+      "Clear lower high/lower low structure",
+      "High volume on bearish candles",
+      "Flip zone retests from above"
+    ],
+    "entry_features": [
+      "Entry price 24659 significantly above recent candle range (24108 high)",
+      "Clear downtrend structure with consistent lower highs/lows",
+      "Multiple bearish momentum candles with large ranges",
+      "Volume spikes on down moves (44k-57k)",
+      "Entry at premium/priced-out level in downtrend"
+    ],
+    "hindsight_features": [
+      "Massive continuation: 24659\u219224304 (354+ points)",
+      "All interim support levels broken (23900, 23600, 23300, 23000, 22700)",
+      "Accelerating downside into final candles",
+      "Profit magnitude suggests position sizing anomaly or demo data"
+    ],
+    "avoid_features": [
+      "Entry significantly above recent price action may indicate data gap",
+      "Verify stop placement above recent swing high"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Entry price well above visible candles suggests limit order strategy or data gap. Verify market conditions at exact entry time. Position sizing appears unrealistic for 0.01 lot.",
+    "source_symbol": "DE40",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "DE40_H4_1812_1770278400",
+    "source_type": "history",
+    "learned_at": 1774023748.4900928,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 3541850.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.9808571,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025121.0497174
+  },
+  {
+    "id": "hist_USTEC_M30_9626_1773156600",
+    "pattern": "swing_high_rejection",
+    "description": "Short entry at swing high with strong bearish rejection - price reversed immediately from entry level showing clear rejection",
+    "description_tr": "Swing high noktas\u0131ndan short giri\u015f. Fiyat 25078 seviyesinde g\u00fc\u00e7l\u00fc red g\u00f6rd\u00fc ve hemen a\u015fa\u011f\u0131 y\u00f6nl\u00fc hareket ba\u015flad\u0131. Entry an\u0131nda bearish momentum ve y\u00fcksek volume mevcuttu.",
+    "confidence_bonus": 10,
+    "trigger_features": [
+      "clear_swing_high_rejections",
+      "high_volume_at_reversal_points",
+      "bearish_engulfing_patterns",
+      "resistance_zone_confluence"
+    ],
+    "entry_features": [
+      "entry_at_swing_high_25078",
+      "strong_bearish_rejection_candle",
+      "high_volume_at_rejection_101599",
+      "price_rejected_from_resistance_zone",
+      "bearish_momentum_visible_at_entry"
+    ],
+    "hindsight_features": [
+      "continued_downward_move_to_24973",
+      "target_reached_in_same_session",
+      "no_pullback_after_entry"
+    ],
+    "avoid_features": [
+      "entries_without_clear_swing_structure",
+      "low_volume_rejection_zones"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was at exact swing high which can be risky if structure not confirmed. Ensure multiple confluence factors before entries at resistance.",
+    "source_symbol": "USTEC",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "USTEC_M30_9626_1773156600",
+    "source_type": "history",
+    "learned_at": 1774024838.034121,
+    "phase": "outcome",
+    "occurrence_count": 2,
+    "sample_count": 2,
+    "win_count": 2,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 1043900.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 2,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264629.990954,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 22476,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024887.8543873
+  },
+  {
+    "id": "hist_GBPCAD_H1_4659_1772452800",
+    "pattern": "breakout_continuation",
+    "description": "Long entry near breakout of consolidation base. Entry at 1.8260 came after bullish expansion candle (1.81996\u21921.82628) breaking above prior swing highs near 1.822-1.824. Base structure formed at 1.817-1.822 before breakout.",
+    "description_tr": "Konsolidasyon taban\u0131ndan k\u0131r\u0131l\u0131m sonras\u0131 long giri\u015f. 1.8260 seviyesi, 1.817-1.822 aral\u0131\u011f\u0131ndaki daralmadan sonra gelen yukar\u0131 y\u00f6nl\u00fc geni\u015fleme mumu sonras\u0131 ger\u00e7ekle\u015fti. K\u0131r\u0131l\u0131m\u0131n hemen ard\u0131ndan giri\u015f yap\u0131ld\u0131.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "tight_base_consolidation",
+      "volume_increase_on_breakout",
+      "clear_higher_low_structure"
+    ],
+    "entry_features": [
+      "base_consolidation_1.817_1.822",
+      "bullish_breakout_candle",
+      "higher_lows_from_1.8147_to_1.8196",
+      "volume_expansion_on_breakout_44876",
+      "swing_high_break_1.822_area"
+    ],
+    "hindsight_features": [
+      "continued_bullish_momentum_to_1.846",
+      "strong_expansion_candles_post_entry",
+      "perfect_timing_capture"
+    ],
+    "avoid_features": [
+      "entry_near_candle_high_1.826",
+      "no_pullback_before_entry"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was aggressive - taken near candle high rather than on pullback. This increases risk but captured the full move. Better entries come on retest of breakout level.",
+    "source_symbol": "GBPCAD",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "GBPCAD_H1_4659_1772452800",
+    "source_type": "history",
+    "learned_at": 1774024956.5028005,
+    "phase": "outcome",
+    "occurrence_count": 2,
+    "sample_count": 2,
+    "win_count": 2,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 41.73,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 2,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264662.094978,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 6480,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025427.0195146
+  },
+  {
+    "id": "hist_GBPAUD_M15_19898_1773938700",
+    "pattern": "counter_impulse_entry",
+    "description": "Short entry placed inside strong bullish displacement without waiting for rejection confirmation. The massive up-candle (1.88222\u21921.89645) was still active momentum - entering mid-move against impulse is low probability.",
+    "description_tr": "Giri\u015f an\u0131nda g\u00fc\u00e7l\u00fc bir y\u00fckseli\u015f momentumu vard\u0131. B\u00fcy\u00fck ye\u015fil mum (140+ pip) hen\u00fcz tamamlanm\u0131\u015ft\u0131 ve short giri\u015f, bu y\u00fckseli\u015fin ortas\u0131na yerle\u015ftirildi. Geri \u00e7ekilme beklenmeden impulse'a kar\u015f\u0131 pozisyon al\u0131nd\u0131. Sonu\u00e7: Kay\u0131p - momentum devam etti.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "wait_for_displacement_completion",
+      "look_for_rejection_candle_at_supply",
+      "confirm_base_structure_before_reversal",
+      "enter_on_pullback_not_impulse"
+    ],
+    "entry_features": [
+      "strong_bullish_displacement_visible",
+      "140pip_bullish_candle_completed",
+      "elevated_volume_on_displacement",
+      "price_near_local_high",
+      "no_rejection_candle_formed_yet"
+    ],
+    "hindsight_features": [
+      "bullish_continuation_after_entry",
+      "price_reached_1.90051_after_entry",
+      "no_bearish_reversal_materialized",
+      "supply_zone_failed_to_hold"
+    ],
+    "avoid_features": [
+      "entering_mid_displacement",
+      "shorting_without_rejection_confirmation",
+      "trading_against_strong_momentum_candles",
+      "ignoring_large_impulsive_moves"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-displacement trades require confirmation. This entry lacked rejection evidence and was essentially catching a falling knife in reverse - shorting into bullish strength.",
+    "source_symbol": "GBPAUD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "GBPAUD_M15_19898_1773938700",
+    "source_type": "history",
+    "learned_at": 1774023894.671634,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -6.89,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 0,
+    "decay_score": 1.0,
+    "live_stats": {
+      "zones_with_bonus": 0,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025437.7637076
+  },
+  {
+    "id": "hist_USTEC_H4_1719_1768392000",
+    "pattern": "overextension_reversal",
+    "description": "Short entry at 25760 was placed after significant rally extension. The visible candles showed market had recovered from 24334 lows to 25170+, and entry at 25760 represented a further extension into potential resistance territory. The trade capitalized on overextension and mean reversion.",
+    "description_tr": "Giri\u015f: 25760 seviyesi g\u00f6r\u00fcn\u00fcr mumlar\u0131n \u00fczerindeydi - a\u015f\u0131r\u0131 uzama b\u00f6lgesinde short giri\u015f. Sonu\u00e7: 306 puan kazan\u00e7. Piyasa 24334'ten ralli yapm\u0131\u015f, 25760'ta reversal ba\u015far\u0131l\u0131 oldu.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "entries at significant extension from recent range",
+      "visible swing structure showing rally exhaustion potential",
+      "areas where prior selloffs occurred (volume spike zones)"
+    ],
+    "entry_features": [
+      "significant rally from 24334 swing low visible",
+      "market making higher highs sequence",
+      "entry above recent swing high 25170 - extension zone",
+      "volume spikes on selloffs suggest selling pressure exists",
+      "large range candles indicate volatility"
+    ],
+    "hindsight_features": [
+      "reversal occurred exactly at entry zone",
+      "306 point drop confirmed short thesis",
+      "no deeper pullback required - timing was precise"
+    ],
+    "avoid_features": [
+      "shorting into strong momentum without clear rejection",
+      "entries without visible price action confirmation at level"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Entry price 25760 was above all visible candles - trade relied on extension principle rather than visible rejection pattern. Higher risk as no concrete displacement visible at entry.",
+    "source_symbol": "USTEC",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "USTEC_H4_1719_1768392000",
+    "source_type": "history",
+    "learned_at": 1774023941.8371093,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 3066050.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.9808645,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025435.270785
+  },
+  {
+    "id": "hist_DE40_M30_9720_1773329400",
+    "pattern": "resistance_retest_short",
+    "description": "Short entry at retest of broken support-turned-resistance following bearish displacement from 23995 to 23541. Entry at 23593.925 captured early downside continuation before confirmation.",
+    "description_tr": "K\u0131r\u0131lm\u0131\u015f destek b\u00f6lgesi (23590-23600) diren\u00e7 olarak test edildi. 23995'ten 23541'e d\u00fc\u015f\u00fc\u015f sergiledi\u011fi yer de\u011fi\u015ftirme hareketi sonras\u0131 sat\u0131\u015f giri\u015f. Erken giri\u015f riski mevcuttu ancak trend devam etti.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "clear_displacement_from_highs",
+      "retest_of_structural_level",
+      "volume_spike_on_initial_move",
+      "prior_range_highs_as_confluence"
+    ],
+    "entry_features": [
+      "prior_displacement_bearish_23995_to_23541",
+      "broken_support_at_23590_23600_area",
+      "entry_near_prior_swing_high_retest",
+      "recent_volatility_increase_candle_1773216000",
+      "price_exhaustion_near_prior_resistance_23950_24000"
+    ],
+    "hindsight_features": [
+      "immediate_continuation_no_pullback",
+      "clean_160_point_downside_move",
+      "no_reversal_attempt_after_entry",
+      "strong_bearish_momentum_confirmed"
+    ],
+    "avoid_features": [
+      "early_entry_before_displacement_confirmed",
+      "limited_candle_close_confirmation",
+      "risk_of_bullish_trap_at_retest_zone"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was aggressive - taken before candle close confirmation. Safer approach would wait for rejection candle at flipped zone. Large profit amount vs 0.01 lot suggests demo or prop firm point system.",
+    "source_symbol": "DE40",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "DE40_M30_9720_1773329400",
+    "source_type": "history",
+    "learned_at": 1774023988.8242192,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 1607450.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.9808693,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025425.2954037
+  },
+  {
+    "id": "hist_XAUUSD_M30_9994_1774020600",
+    "pattern": "bearish_continuation_pullback",
+    "description": "Entry was taken during a pullback within a strong bearish trend following a massive displacement move. The setup showed clear structural breakdown from 5000+ to 4502 area, with entry at a retest of broken support turned resistance.",
+    "description_tr": "Giri\u015f: 5000'den 4502'ye g\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f sonras\u0131 geri \u00e7ekilmede supply b\u00f6lgesine short. Yap\u0131sal k\u0131r\u0131l\u0131m ve displacement g\u00f6r\u00fcn\u00fcrd\u00fc. Sonu\u00e7: Trend devam etti\u011fi i\u00e7in kar kapand\u0131. Benzer setup'larda g\u00fc\u00e7l\u00fc displacement sonras\u0131 geri \u00e7ekilmeleri ara.",
+    "confidence_bonus": 10,
+    "trigger_features": [
+      "strong_displacement_with_high_volume",
+      "pullback_to_flip_zone_after_structural_break",
+      "clear_trend_direction",
+      "entry_on_retest_not_chase"
+    ],
+    "entry_features": [
+      "strong_bearish_displacement_from_5044_to_4502",
+      "high_volume_on_displacement_candles_137324_and_110598",
+      "pullback_to_supply_zone_4654_4735",
+      "clear_downtrend_structure_with_lower_highs",
+      "flip_zone_entry_broken_support_as_resistance",
+      "entry_during_pullback_rejection"
+    ],
+    "hindsight_features": [
+      "price_continued_to_4540_after_exit",
+      "exit_was_conservative_before_full_extension",
+      "consolidation_provided_excellent_entry_timing"
+    ],
+    "avoid_features": [
+      "market_significantly_oversold_after_large_drop",
+      "deep_pullback_could_indicate_potential_reversal_risk"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Entry after major displacement requires confirmation of continuation rather than reversal. Conservative targets advisable given oversold conditions.",
+    "source_symbol": "XAUUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "XAUUSD_M30_9994_1774020600",
+    "source_type": "history",
+    "learned_at": 1774024051.4688725,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 527778.33,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 0,
+    "decay_score": 1.0,
+    "live_stats": {
+      "zones_with_bonus": 0,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024690.615504
+  },
+  {
+    "id": "hist_GBPUSD_H1_4996_1774018800",
+    "pattern": "rejection_from_swing_high",
+    "description": "Entry was placed after bearish displacement candle at 1.338075 following rejection from swing high near 1.34671. The setup showed a potential bearish reversal pattern with two consecutive red candles after a significant rally from 1.322 to 1.344. Volume on the displacement candle was elevated (20828), suggesting institutional selling pressure.",
+    "description_tr": "Giri\u015f: 1.34671 direncinden sonra bearish displacement mumu ile sat\u0131\u015f yap\u0131ld\u0131. Sonu\u00e7: Tersine d\u00f6n\u00fc\u015f devam etti ve kar kapand\u0131. Ders: G\u00fc\u00e7l\u00fc y\u00fckseli\u015ften sonra red olu\u015fumlar\u0131nda sat\u0131\u015f f\u0131rsatlar\u0131 aranabilir.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "clear_swing_high_rejections",
+      "consecutive_bearish_candles_showing_momentum_shift",
+      "elevated_volume_on_displacement_candles",
+      "entries_after_extended_rallies_with_exhaustion_signs"
+    ],
+    "entry_features": [
+      "bearish_displacement_candle_with_range_extension",
+      "prior_swing_high_rejection_near_1.34671",
+      "two_consecutive_bearish_candles",
+      "elevated_volume_on_entry_candle_20828",
+      "uptrend_from_1.322_to_1.344_providing_mean_reversion_opportunity"
+    ],
+    "hindsight_features": [
+      "continued_bearish_momentum_post_entry",
+      "exit_at_1.337568_was_early_as_price_dropped_to_1.32985",
+      "larger_bearish_structure_developed_after_exit"
+    ],
+    "avoid_features": [
+      "counter_trend_entry_without_clear_rejection_confirmation",
+      "selling_into_potential_pullback_vs_genuine_reversal_risk"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend reversal trades require tight stops. This trade benefited from continued selling but could have been a pullback in larger uptrend.",
+    "source_symbol": "GBPUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "GBPUSD_H1_4996_1774018800",
+    "source_type": "history",
+    "learned_at": 1774024167.1002376,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 5.07,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.9808748,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025426.1813152
+  },
+  {
+    "id": "hist_GBPUSD_M15_19681_1773743400",
+    "pattern": "flip_zone_pullback",
+    "description": "Long entry on pullback to flip zone after bullish displacement from swing lows. Price recovered from 1.322 area and pulled back to test 1.330 support before continuation.",
+    "description_tr": "Giri\u015f: 1.322-1.326 dip seviyesinden g\u00fc\u00e7l\u00fc toparlanma sonras\u0131 1.330 deste\u011fe geri \u00e7ekilme. Flip zone (diren\u00e7 -> destek) testi. Sonu\u00e7: Kazan\u00e7 - geri \u00e7ekilme al\u0131mlar\u0131 flip zone'larda \u00e7al\u0131\u015f\u0131r.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "clear_flip_zone_confluence",
+      "displacement_confirmed_base_structures",
+      "pullback_with_decreasing_selling_pressure"
+    ],
+    "entry_features": [
+      "pullback_to_flip_zone",
+      "prior_bullish_displacement_from_lows",
+      "base_consolidation_around_1.325_1.330",
+      "moderate_volume_on_pullback"
+    ],
+    "hindsight_features": [
+      "continuation_confirmed_with_strong_bullish_candle",
+      "exit_at_1.33288_near_local_high",
+      "volume_increase_on_continuation"
+    ],
+    "avoid_features": [
+      "entries_during_strong_downtrend_without_clear_reversal",
+      "entries_far_from_key_structural_levels"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Overall context was still within larger downtrend structure - preferred smaller position size on counter-trend setups",
+    "source_symbol": "GBPUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "GBPUSD_M15_19681_1773743400",
+    "source_type": "history",
+    "learned_at": 1774024283.4822505,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 29.29,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264325.7246797,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 5,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024902.7578983
+  },
+  {
+    "id": "hist_XAUUSD_M15_19897_1773934200",
+    "pattern": "Displacement_Demand_Sweep",
+    "description": "Entry after extreme bearish displacement into demand zone with sweep of swing lows. Position taken near LOD after 500+ pip drop showed conviction in zone validity.",
+    "description_tr": "Giri\u015f: 500+ piplik d\u00fc\u015f\u00fc\u015f sonras\u0131 talep b\u00f6lgesine dip sweep ile long giri\u015f. Sonu\u00e7: B\u00f6lge tuttu, fiyat 46+ pip yukar\u0131 hareket etti. Ders: Ekstrem displacement sonras\u0131 ilk talep b\u00f6lgesi g\u00fc\u00e7l\u00fcd\u00fcr.",
+    "confidence_bonus": 10,
+    "trigger_features": [
+      "Entry after extreme displacement (overextension)",
+      "Price near multi-candle swing low sweeps",
+      "Bullish rejection wicks forming at demand",
+      "Compression candles before entry"
+    ],
+    "entry_features": [
+      "500+ pip bearish displacement from 5200 to 4500 levels",
+      "Entry near extreme LOD (4502.57 was major low)",
+      "Price compressed into demand zone after violent drop",
+      "Multiple swing points swept (4834, 4686, 4502 lows)",
+      "Last candle showed rejection wick (L:4540.53 C:4574.04)"
+    ],
+    "hindsight_features": [
+      "Zone held perfectly at first test",
+      "Quick 46+ pip reversal without deeper probe",
+      "No retest of entry level - strong validation"
+    ],
+    "avoid_features": [
+      "Strong persistent bearish momentum pre-entry",
+      "No clear base formation at entry time",
+      "Counter-trend trade against heavy selling pressure"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend reversal trades require tight stops. This succeeded due to extreme overextension - not all demand zones after drop will hold.",
+    "source_symbol": "XAUUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "XAUUSD_M15_19897_1773934200",
+    "source_type": "history",
+    "learned_at": 1774024392.2544806,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 463450.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264660.0715392,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 2985,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024900.386369
+  },
+  {
+    "id": "hist_NZDJPY_M15_19901_1773941400",
+    "pattern": "counter_trend_support_long_without_displacement",
+    "description": "Counter-trend long entry at potential support without bullish displacement confirmation; tight stop below recent swing low triggered before reversal materialized",
+    "description_tr": "Giri\u015f an\u0131nda: G\u00fc\u00e7l\u00fc d\u00fc\u015f\u00fc\u015f trendinde destek seviyesine yak\u0131n al\u0131m yap\u0131ld\u0131, ancak yukar\u0131 y\u00f6nl\u00fc displacement yoktu. Sonu\u00e7: Stop \u00e7ok yak\u0131n oldu\u011fu ve onay gelmeden \u00f6nce tetiklendi. Benzer durumlarda momentum onay\u0131 beklenmeli.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "bullish displacement candle before entry",
+      "base structure at support level",
+      "reduced selling volume on retest",
+      "trend alignment or clear reversal confirmation"
+    ],
+    "entry_features": [
+      "price near recent swing low at 92.112 area",
+      "strong preceding downtrend from 94.0 to 92.1",
+      "high selling volume on approach candles (V: 84278, 60101)",
+      "no bullish displacement visible at entry",
+      "no consolidation/base structure before entry",
+      "sharp momentum decline into the zone"
+    ],
+    "hindsight_features": [
+      "price eventually rallied to 93.294 after stop was hit",
+      "valid support zone existed but timing was premature",
+      "entry candle formed a recovery but low extended to 92.200 first"
+    ],
+    "avoid_features": [
+      "counter-trend entries without bullish displacement",
+      "entries during sharp momentum decline",
+      "tight stops inside recent swing low volatility range",
+      "buying without base/consolidation structure"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend trades require displacement confirmation; tight stops below swing lows prone to wick-outs before reversal",
+    "source_symbol": "NZDJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "NZDJPY_M15_19901_1773941400",
+    "source_type": "history",
+    "learned_at": 1774024438.2380254,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -123.5,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774218756.445116,
+    "decay_score": 0.92,
+    "live_stats": {
+      "zones_with_bonus": 1,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024898.2050226
+  },
+  {
+    "id": "hist_US30_M15_19696_1773746100",
+    "pattern": "demand_base_breakout_with_displacement",
+    "description": "Entry was taken at 46773.15 after a bullish displacement candle from the 46389-46600 demand base. The trade captured momentum from a fresh demand zone with prior consolidation structure.",
+    "description_tr": "Giri\u015f, 46389-46600 talep b\u00f6lgesinden gelen g\u00fc\u00e7l\u00fc bir y\u00fckseli\u015f mumu sonras\u0131 yap\u0131ld\u0131. Bu ticaret, konsolidasyon sonras\u0131 momentum yakalad\u0131.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "displacement_from_clear_base_structure",
+      "demand_zone_after_extended_downtrend",
+      "bullish_closes_above_base_high"
+    ],
+    "entry_features": [
+      "bullish_displacement_candle_from_lows",
+      "prior_base_consolidation_46389_46600",
+      "demand_zone_formed_after_downtrend",
+      "entry_near_displacement_candle_close",
+      "volume_support_on_bullish_candle"
+    ],
+    "hindsight_features": [
+      "price_continued_to_46894_without_deep_pullback",
+      "demand_zone_held_firmly",
+      "trend_reversal_confirmed_post_entry"
+    ],
+    "avoid_features": [
+      "entry_at_upper_extreme_of_displacement_candle",
+      "no_pullback_to_zone_for_better_risk_entry"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was aggressive at displacement high; better entries await pullback to zone edge for improved risk/reward",
+    "source_symbol": "US30",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "US30_M15_19696_1773746100",
+    "source_type": "history",
+    "learned_at": 1774024563.9146411,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 1218100.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264662.0949922,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 6488,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024628.8995404
+  },
+  {
+    "id": "hist_AUDUSD_H1_4840_1773280800",
+    "pattern": "counter_trend_without_displacement",
+    "description": "Short entered at potential support after bullish swing, with no bearish displacement confirmation - single bearish candle does not constitute valid supply zone",
+    "description_tr": "G\u00fc\u00e7l\u00fc y\u00fckseli\u015f hareketinin ard\u0131ndan, a\u00e7\u0131k\u00e7a tan\u0131mlanm\u0131\u015f bir arz b\u00f6lgesi olmadan destek alan\u0131na k\u0131sa girildi. Geriye d\u00f6n\u00fck bak\u0131ld\u0131\u011f\u0131nda, fiyat 0.7143-0.7147 deste\u011finden s\u0131\u00e7rad\u0131 ve stoploss tetiklendi.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "clear_bearish_displacement",
+      "proper_supply_zone_with_base_structure",
+      "entries_at_confirmed_flip_zones",
+      "multiple_candle_rejection_at_resistance"
+    ],
+    "entry_features": [
+      "single_bearish_candle_after_bullish_swing",
+      "entry_near_swing_low_not_high",
+      "no_clear_supply_zone_base",
+      "bullish_momentum_0.711_to_0.71857_visible"
+    ],
+    "hindsight_features": [
+      "price_bounced_from_0.71436_support",
+      "bullish_continuation_after_entry",
+      "0.7143_area_was_demand_not_supply"
+    ],
+    "avoid_features": [
+      "shorting_without_bearish_displacement",
+      "entries_at_swing_lows_for_shorts",
+      "counter_trend_without_base_confirmation",
+      "single_candle_reversal_entries"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend shorts require clear displacement and confirmed supply zone - not just single bearish candle at swing low",
+    "source_symbol": "AUDUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "AUDUSD_H1_4840_1773280800",
+    "source_type": "history",
+    "learned_at": 1774024690.607243,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -12.53,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264629.9909668,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 22472,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024895.9398363
+  },
+  {
+    "id": "hist_USTEC_H1_4732_1772683200",
+    "pattern": "supply_zone_rejection",
+    "description": "Short entry at premium supply zone after rejection from 25190 swing high. Price showed displacement away from 25130-25190 zone with bearish engulfing structure. Entry positioned near supply zone upper boundary with clear risk definition above recent swing high.",
+    "description_tr": "25190 seviyesinden reddedilmi\u015f fiyatlama sonras\u0131 supply zone'dan short giri\u015f. Displacement ve bearish yap\u0131 g\u00f6r\u00fcld\u0131. Premium b\u00f6lgeden giri\u015f yap\u0131lm\u0131\u015f, d\u00fc\u015f\u00fc\u015f devam etmi\u015f.",
+    "confidence_bonus": 10,
+    "trigger_features": [
+      "clear_swing_high_rejection",
+      "supply_zone_with_displacement",
+      "premium_zone_entries_for_shorts",
+      "bearish_candle_close_confirmation"
+    ],
+    "entry_features": [
+      "rejection_from_25190_swing_high",
+      "entry_near_supply_zone_25130_25190",
+      "bearish_candle_after_test",
+      "premium_pricing_area",
+      "clear_risk_above_25190"
+    ],
+    "hindsight_features": [
+      "strong_continuation_to_24050",
+      "no_retest_of_entry_zone",
+      "accelerating_downside_momentum"
+    ],
+    "avoid_features": [
+      "choppy_price_action_prior_to_entry",
+      "multiple_tests_of_similar_levels",
+      "lower_timeframe_noise"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was well-positioned at supply zone edge. Trade benefited from strong follow-through but could have faced whipsaw in choppy conditions.",
+    "source_symbol": "USTEC",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "USTEC_H1_4732_1772683200",
+    "source_type": "history",
+    "learned_at": 1774024737.7506351,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 1228066.67,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264631.5633328,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 24155,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024892.9212732
+  },
+  {
+    "id": "hist_USDJPY_H1_4621_1772128800",
+    "pattern": "counter_trend_support_bounce",
+    "description": "Counter-trend long entry during bearish displacement - high risk entry against momentum. Entry at 156.04 occurred after sharp drop from 159+ levels without clear bottoming structure visible at entry time.",
+    "description_tr": "Giri\u015f an\u0131nda: 159'dan 157'ye sert d\u00fc\u015f\u00fc\u015f sonras\u0131, destek seviyesine yak\u0131n long giri\u015f yap\u0131lm\u0131\u015f. Giri\u015fte net bir dip formasyonu yoktu, momentum bearish idi. Sonu\u00e7: Destek tuttu ve fiyat yukar\u0131 d\u00f6nd\u00fc - \u015fansl\u0131 bir giri\u015f.",
+    "confidence_bonus": 5,
+    "trigger_features": [
+      "wait_for_reversal_candle_close",
+      "confirmation_of_support_hold",
+      "base_structure_formation_before_entry",
+      "bullish_displacement_after_drop"
+    ],
+    "entry_features": [
+      "price_approaching_potential_support",
+      "sharp_drop_created_displacement",
+      "possible_oversold_condition"
+    ],
+    "hindsight_features": [
+      "support_level_held_at_156_zone",
+      "price_reversed_exactly_from_entry_area",
+      "bullish_momentum_returned_after_entry"
+    ],
+    "avoid_features": [
+      "entering_against_strong_bearish_momentum",
+      "no_clear_basing_structure_at_entry",
+      "gap_in_price_data_suggesting_volatility",
+      "entry_before_confirmed_reversal_candle"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend entries against displacement are high risk. Better to wait for retest of broken level as new support (flip) with bullish confirmation candle.",
+    "source_symbol": "USDJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "USDJPY_H1_4621_1772128800",
+    "source_type": "history",
+    "learned_at": 1774024787.2393281,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 3022.5,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774218756.4451222,
+    "decay_score": 0.92,
+    "live_stats": {
+      "zones_with_bonus": 1,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774024890.137191
+  },
+  {
+    "id": "hist_CADJPY_M30_9648_1773221400",
+    "pattern": "mid_trend_entry_no_retrace",
+    "description": "Short entry taken mid-drop without retracement or base structure; price briefly retraced above entry before continuing lower, triggering stop loss on poor timing.",
+    "description_tr": "D\u00fc\u015f\u00fc\u015f ortas\u0131nda, geri \u00e7ekilme veya taban formasyonu olmadan sat\u0131\u015f yap\u0131lm\u0131\u015f. Fiyat k\u0131sa s\u00fcre yukar\u0131 geri \u00e7ekilip stopu tetiklemi\u015f, sonra d\u00fc\u015f\u00fc\u015f devam etmi\u015f. Giri\u015f zamanlamas\u0131 k\u00f6t\u00fc.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "retracement to resistance level before short entry",
+      "base structure with consolidation candles",
+      "fresh displacement after base breakout",
+      "flip zone where support becomes resistance",
+      "clear swing low break with retest"
+    ],
+    "entry_features": [
+      "price declining from 117.115 swing high",
+      "recent candle closed bearish at 116.669",
+      "entry at 116.666 near candle close",
+      "no consolidation or base structure visible",
+      "no clear displacement or imbalance at entry",
+      "recent swing low at 116.568 - only ~10 pips below entry"
+    ],
+    "hindsight_features": [
+      "next candle made high at 116.730 - exceeded entry by 6+ pips",
+      "large bearish continuation followed to 114.691",
+      "direction was correct but entry precision was wrong",
+      "no retrace to resistance before short entry"
+    ],
+    "avoid_features": [
+      "entering shorts above recent swing low with minimal target room",
+      "mid-trend entries without retracement confirmation",
+      "entries without base structure or flip zone",
+      "shorting into momentum without pullback"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Mid-trend entries without retrace require very wide stops or accept high stop-out probability; direction can be correct but timing causes losses.",
+    "source_symbol": "CADJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "CADJPY_M30_9648_1773221400",
+    "source_type": "history",
+    "learned_at": 1774025016.6843123,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -1043.25,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774254301.9808843,
+    "decay_score": 0.91,
+    "live_stats": {
+      "zones_with_bonus": 2,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025428.1623933
+  },
+  {
+    "id": "hist_AUDCAD_M15_19666_1773729900",
+    "pattern": "chased_displacement_no_base",
+    "description": "Short entry at 0.96887 was placed into recent support zone after a single bearish candle without proper base consolidation. The candle [1773993600] showed displacement (O:0.97324\u2192C:0.96920), but entry was chased at candle low near 0.965-0.966 historical support area where price had previously bounced.",
+    "description_tr": "D\u00fc\u015f\u00fc\u015f mumunun dibine girilmi\u015f - destek b\u00f6lgesine sat\u0131\u015f yap\u0131lm\u0131\u015f. Base formasyonu beklenmeden momentum takibi. 0.965-0.966 destek b\u00f6lgesi g\u00f6r\u00fcn\u00fcrd\u00fc, buraya sat\u0131\u015f riskliydi.",
+    "confidence_bonus": -8,
+    "trigger_features": [
+      "base structure after displacement",
+      "flip zone confirmation (old resistance becomes support)",
+      "clear directional bias outside of ranges",
+      "entries after consolidation, not during momentum"
+    ],
+    "entry_features": [
+      "single bearish displacement candle visible",
+      "entry at candle low (extreme)",
+      "no base/consolidation structure before entry",
+      "0.965-0.966 support zone 30 pips below entry",
+      "range-bound market conditions evident",
+      "multiple failed breakouts in recent history"
+    ],
+    "hindsight_features": [
+      "price bounced from 0.96483 support area",
+      "market continued ranging after trade exit",
+      "no follow-through selling occurred"
+    ],
+    "avoid_features": [
+      "entries at extreme of large displacement candles",
+      "selling into known support zones",
+      "trades without base consolidation confirmation",
+      "entries in clear range-bound conditions"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "base",
+    "evidence_strength": "low",
+    "risk_notes": "This was a momentum-chase entry into support. Bot should require minimum 2-3 candle base formation after displacement before entry confirmation.",
+    "source_symbol": "AUDCAD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "AUDCAD_M15_19666_1773729900",
+    "source_type": "history",
+    "learned_at": 1774025068.6105218,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -6.65,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264629.9909775,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 22471,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025119.7629244
+  },
+  {
+    "id": "hist_XAUUSD_M30_9985_1774004400",
+    "pattern": "displacement_base_short",
+    "description": "Short entry at upper boundary of bearish base structure following major displacement. The 5000\u21924502 crash created strong bearish momentum, and entry at 4687 was near the top of a consolidation range with multiple rejections from 4730-4735 area.",
+    "description_tr": "5000'den 4502'ye b\u00fcy\u00fck bir d\u00fc\u015f\u00fc\u015f (displacement) sonras\u0131 4600-4700 aral\u0131\u011f\u0131nda taban olu\u015fmu\u015f. 4687 giri\u015f noktas\u0131, 4730-4735 b\u00f6lgesinden olu\u015fan reddin hemen alt\u0131nda, konsolidasyonun \u00fcst s\u0131n\u0131r\u0131ndayd\u0131. K\u0131sa vadeli diren\u00e7ten sat\u0131\u015f mant\u0131kl\u0131yd\u0131.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "clear_displacement_followed_by_base",
+      "rejection_from_flip_zone",
+      "entry_at_upper_range_of_consolidation",
+      "elevated_volume_confirming_momentum"
+    ],
+    "entry_features": [
+      "major_bearish_displacement_5000_to_4502",
+      "base_consolidation_4600_4700_zone",
+      "multiple_rejections_from_4730_4735",
+      "entry_at_upper_range_of_base",
+      "elevated_volume_during_displacement"
+    ],
+    "hindsight_features": [
+      "price_continued_to_4540_after_exit",
+      "4700_level_held_as_resistance",
+      "exit_captured_mid_move_not_full_extent"
+    ],
+    "avoid_features": [
+      "entering_after_very_large_displacement_risk_of_oversold_bounce",
+      "late_entry_in_extended_trend"
+    ],
+    "applicable_timeframes": [
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "both",
+    "evidence_strength": "low",
+    "risk_notes": "Entry after major displacement carries counter-trend bounce risk. Base structure entry more reliable than chase entry. Profit target reasonable given volatility.",
+    "source_symbol": "XAUUSD",
+    "source_timeframe": "H4",
+    "source_zone_type": "supply",
+    "source_trade_id": "XAUUSD_M30_9985_1774004400",
+    "source_type": "history",
+    "learned_at": 1774025118.8410504,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 492830.0,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264631.5633383,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 8843,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025429.1411128
+  },
+  {
+    "id": "hist_GBPCAD_H1_4781_1773064800",
+    "pattern": "exhaustion_reversal_from_extended_low",
+    "description": "Entry caught price at extreme swing low after bearish displacement. The prior candles showed a decline from 1.83 area to 1.81 zone with increasing volume, indicating potential exhaustion. Entry at 1.80697 was below visible candle lows, suggesting a precise limit order at extended support.",
+    "description_tr": "Giri\u015f, d\u00fc\u015f\u00fc\u015f hareketinin ard\u0131ndan a\u015f\u0131r\u0131 dip seviyesinde ger\u00e7ekle\u015fti. \u00d6nceki mumlar 1.83'ten 1.81'e d\u00fc\u015f\u00fc\u015f g\u00f6sterdi. Giri\u015f fiyat\u0131 g\u00f6r\u00fcnen mum diplerinin alt\u0131nda - hassas limit emri. Fiyat geri \u00e7ekildi ve k\u00e2rla kapand\u0131.",
+    "confidence_bonus": 8,
+    "trigger_features": [
+      "entries_at_extended_lows_after_displacement_moves",
+      "increasing_volume_during_decline_exhaustion_pattern",
+      "precision_limit_orders_at_psychological_support_zones"
+    ],
+    "entry_features": [
+      "price_declined_from_1.83_to_1.81_zone_bearish_displacement",
+      "entry_below_visible_candle_lows_precision_limit_order",
+      "prior_drop_candle_1773388800_showed_strong_momentum_L:1.81141",
+      "candle_1773403200_tested_low_at_1.81041_then_recovered",
+      "volume_increased_during_decline_exhaustion_signal"
+    ],
+    "hindsight_features": [
+      "price_recovered_exactly_as_planned_from_1.80697_to_1.81292",
+      "later_candles_show_sustained_uptrend_to_1.84_plus",
+      "entry_caught_exact_swing_low_before_major_rally"
+    ],
+    "avoid_features": [
+      "entering_against_visible_bearish_momentum_without_confirmation",
+      "entry_price_below_all_visible_lows_risk_of_continuation"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "M30",
+      "H1"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Counter-trend entries at extended lows can work but carry continuation risk. This trade benefited from precise entry timing and modest profit target.",
+    "source_symbol": "GBPCAD",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "GBPCAD_H1_4781_1773064800",
+    "source_type": "history",
+    "learned_at": 1774025180.5448887,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 1,
+    "loss_count": 0,
+    "win_rate": 100.0,
+    "avg_r": 59.54,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264325.7246866,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 5,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025429.9168935
+  },
+  {
+    "id": "hist_EURJPY_H1_4685_1772550000",
+    "pattern": "bearish_displacement_no_base",
+    "description": "Long entry caught a falling knife during bearish displacement without proper base confirmation or support test",
+    "description_tr": "Giri\u015f an\u0131nda g\u00fc\u00e7l\u00fc bearish displacement (a\u015fa\u011f\u0131 y\u00f6nl\u00fc ivme) vard\u0131. Taban formasyonu beklenmeden d\u00fc\u015fen b\u0131\u00e7a\u011fa el uzat\u0131ld\u0131. Destek testi yap\u0131lmadan girilmi\u015f. Sonu\u00e7: Stop av\u0131.",
+    "confidence_bonus": -10,
+    "trigger_features": [
+      "wait_for_displacement_completion",
+      "require_base_consolidation_min_3_candles",
+      "confirmation_candle_with_bullish_close",
+      "tested_support_level_with_rejection"
+    ],
+    "entry_features": [
+      "prior_uptrend_structure_higher_highs",
+      "sharp_bearish_displacement_candle",
+      "entry_near_candle_low_182.910",
+      "moderate_volume_32209",
+      "price_dropped_from_183.600_to_182.910"
+    ],
+    "hindsight_features": [
+      "brief_recovery_to_183.418_then_reversal",
+      "continued_drop_to_182.056_next_session",
+      "no_real_support_at_entry_level",
+      "stop_loss_hit_at_182.839"
+    ],
+    "avoid_features": [
+      "entering_during_strong_bearish_candle",
+      "catching_falling_knife_without_confirmation",
+      "no_base_consolidation_before_entry",
+      "entering_at_untested_price_level"
+    ],
+    "applicable_timeframes": [
+      "M15",
+      "H1",
+      "H4"
+    ],
+    "zone_scope": "flip",
+    "evidence_strength": "low",
+    "risk_notes": "Entry was mid-displacement without structure. Should wait for momentum exhaustion, base formation, and bullish confirmation before long entries.",
+    "source_symbol": "EURJPY",
+    "source_timeframe": "H4",
+    "source_zone_type": "demand",
+    "source_trade_id": "EURJPY_H1_4685_1772550000",
+    "source_type": "history",
+    "learned_at": 1774025227.6583726,
+    "phase": "outcome",
+    "occurrence_count": 1,
+    "sample_count": 1,
+    "win_count": 0,
+    "loss_count": 1,
+    "win_rate": 0.0,
+    "avg_r": -729.63,
+    "status": "approved",
+    "source_breakdown": {
+      "history": 1,
+      "annotation": 0,
+      "outcome": 0
+    },
+    "contradictory_examples": 0,
+    "last_applied_at": 1774264000.292656,
+    "decay_score": 0.9,
+    "live_stats": {
+      "zones_with_bonus": 3,
+      "trades_with_bonus": 0,
+      "bonus_win_count": 0,
+      "bonus_loss_count": 0,
+      "bonus_avg_r": 0.0
+    },
+    "status_changed_at": 1774025430.591236
+  }
+]
